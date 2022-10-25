@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.DishDAO">
+    <resultMap id="dishResultMap" type="xh.nursinghome.system.entity.DishDO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="cuisine" property="cuisine"/>
+        <result column="ingredients" property="ingredients"/>
+        <result column="taste" property="taste"/>
+        <result column="taboo_crowds" property="tabooCrowds"/>
+        <result column="method" property="method"/>
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+    <select id="findAll" resultMap="dishResultMap">
+        select * from dish
+    </select>
+
+    <update id="update" parameterType="xh.nursinghome.system.entity.DishDO">
+        update dish set name=#{name},cuisine=#{cuisine},ingredients=#{ingredients},taste=#{taste},taboo_crowds=#{tabooCrowds},method=#{method},gmt_modified=#{gmtModified} where id=#{id};
+    </update>
+
+    <insert id="add" parameterType="xh.nursinghome.system.entity.DishDO">
+        insert into dish (name,cuisine,ingredients,taste,taboo_crowds,method,gmt_created,gmt_modified)
+        VALUES (#{name},#{cuisine},#{ingredients},#{taste},#{tabooCrowds},#{method},#{gmtCreated},#{gmtModified})
+    </insert>
+
+    <select id="findComplex" resultMap="dishResultMap" >
+
+        select * from dish
+        <where>
+            <if test="name != null and name !='' and name !='0'.toString()" >
+                name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="taste != null and taste !='' and taste !='0'.toString()">
+                and taste=#{taste}
+            </if>
+            <if test="cuisine != null and cuisine !='' and cuisine !='0'.toString()">
+                and cuisine=#{cuisine}
+            </if>
+            <if test="tabooCrowds != null and tabooCrowds !='' and tabooCrowds !='0'.toString()">
+                and taboo_crowds &lt;&gt; #{tabooCrowds}
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RecipeDetailDAO">
+    <resultMap id="RecipeDetailResultMap" type="xh.nursinghome.system.entity.RecipeDetailDO">
+        <id column="id" property="id"/>
+        <result column="recipeId" property="recipeId"/>
+        <result column="time" property="time"/>
+        <result column="Mon" property="Mon"/>
+        <result column="Tue" property="Tue"/>
+        <result column="Wed" property="Wed"/>
+        <result column="Thu" property="Thu"/>
+        <result column="Fri" property="Fri"/>
+        <result column="Sat" property="Sat"/>
+        <result column="Sun" property="Sun"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="RecipeDetailResultMap">
+        select * from recipedetail
+    </select>
+    <select id="findByRecipeId" resultMap="RecipeDetailResultMap">
+        select * from recipedetail where recipeId=#{recipeId}
+    </select>
+
+    <insert id="add" parameterType="xh.nursinghome.system.entity.RecipeDetailDO">
+        insert into recipedetail (recipeId,time,Mon,Tue,Wed,Thu,Fri,Sat,Sun)
+        VALUES
+               (#{recipeId},'早餐','无','无','无','无','无','无','无'),
+               (#{recipeId},'中餐','无','无','无','无','无','无','无'),
+               (#{recipeId},'晚餐','无','无','无','无','无','无','无')
+    </insert>
+
+
+
+    <delete id="deleteByRecipeId" >
+        delete from recipedetail where recipeId=#{recipeId}
+    </delete>
+
+    <update id="updateById" parameterType="xh.nursinghome.system.entity.RecipeDetailDO">
+        update recipedetail set recipeId=#{recipeId},time=#{time},
+                                Mon=#{Mon},Tue=#{Tue},Wed=#{Wed},
+                                Thu=#{Thu},Fri=#{Fri},Sat=#{Sat},Sun=#{Sun} where id=#{id};
+    </update>
+
+
+</mapper>

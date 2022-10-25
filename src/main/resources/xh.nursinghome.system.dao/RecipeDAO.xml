@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RecipeDAO">
+    <resultMap id="RecipeResultMap" type="xh.nursinghome.system.entity.RecipeDO">
+        <id column="recipeId" property="recipeId"/>
+        <result column="name" property="name"/>
+        <result column="suitable" property="suitable"/>
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="gmt_modified" property="gmtModified"/>
+    </resultMap>
+    <select id="findAll" resultMap="RecipeResultMap">
+        select * from recipe
+    </select>
+    <select id="selectByName" resultMap="RecipeResultMap">
+        select * from recipe where name=#{name}
+    </select>
+    <select id="selectByRecipeId" resultMap="RecipeResultMap">
+        select * from recipe where recipeId=#{recipeId}
+    </select>
+
+    <insert id="add" parameterType="xh.nursinghome.system.entity.RecipeDO">
+        insert into recipe (name,suitable,gmt_created,gmt_modified)
+        VALUES (#{name},#{suitable},#{gmtCreated},#{gmtModified})
+    </insert>
+
+    <delete id="delete" >
+        delete from recipe where recipeId=#{recipeId}
+    </delete>
+    <update id="update" parameterType="xh.nursinghome.system.entity.RecipeDO">
+        update recipe set name=#{name},suitable=#{suitable},gmt_created=#{gmtCreated},gmt_modified=#{gmtModified} where recipeId=#{recipeId}
+    </update>
+
+</mapper>
