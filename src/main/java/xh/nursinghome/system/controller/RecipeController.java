@@ -92,6 +92,7 @@ public class RecipeController {
         writer.close();
     }
 
+    //以下是菜谱管理
     @GetMapping("/findRecipe")
     public Map<String,Object> findRecipe(){
         Map<String,Object> res=recipeService.findAll();

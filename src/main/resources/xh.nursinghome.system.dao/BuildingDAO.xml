@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.BuildingDAO">
+    <resultMap id="buildingResultMap" type="xh.nursinghome.system.entity.BuildingDO">
+        <id column="id" property="id"/>
+        <result column="head_id" property="headId"/>
+        <result column="building_name" property="buildingName"/>
+        <result column="builder" property="builder"/>
+        <result column="completion_time" property="completionTime"/>
+        <result column="area" property="area"/>
+        <result column="structure" property="structure"/>
+        <result column="floors_number" property="floorsNumber"/>
+        <result column="rooms_number" property="roomsNumber"/>
+        <result column="repair_time" property="repairTime"/>
+    </resultMap>
+    <select id="findAll" resultMap="buildingResultMap">
+        select * from building
+    </select>
+
+    <insert id="addBuilding" parameterType="xh.nursinghome.system.entity.BuildingDO">
+        insert into building (head_id,building_name,builder,completion_time,area,structure,floors_number,rooms_number,repair_time)
+        VALUES (#{headId},#{buildingName},#{builder},#{completionTime},#{area},#{structure},#{floorsNumber},#{roomsNumber},#{repairTime})
+    </insert>
+
+    <update id="updateBuilding" parameterType="xh.nursinghome.system.entity.BuildingDO">
+        update building set head_id=#{headId},building_name=#{buildingName},
+                            builder=#{builder},completion_time=#{completionTime},area=#{area},
+                            structure=#{structure},floors_number=#{floorsNumber},rooms_number=#{roomsNumber},repair_time=#{repairTime}
+        where id=#{id};
+    </update>
+
+    <select id="findComplex" resultMap="buildingResultMap" >
+        select * from building
+        <where>
+            <if test="buildingName != null and buildingName !='' and buildingName !='0'.toString()" >
+                building_name LIKE CONCAT('%',#{buildingName},'%')
+            </if>
+            <if test="structure != null and structure !='' and structure !='0'.toString()">
+                and structure=#{structure}
+            </if>
+            <if test="headId != null and headId !='' and headId !='0'.toString()">
+                and head_id=#{headId}
+            </if>
+        </where>
+    </select>
+</mapper>

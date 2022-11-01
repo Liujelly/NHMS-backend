@@ -27,7 +27,6 @@
     </insert>
 
     <select id="findComplex" resultMap="dishResultMap" >
-
         select * from dish
         <where>
             <if test="name != null and name !='' and name !='0'.toString()" >
@@ -44,5 +43,6 @@
             </if>
         </where>
     </select>
+
 
 </mapper>
