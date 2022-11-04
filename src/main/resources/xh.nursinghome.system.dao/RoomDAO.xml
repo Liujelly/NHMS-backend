@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RoomDAO">
+    <resultMap id="roomResultMap" type="xh.nursinghome.system.entity.RoomDO">
+        <id column="id" property="id"/>
+        <result column="building_id" property="buildingId"/>
+        <result column="room_name" property="roomName"/>
+        <result column="area" property="area"/>
+        <result column="purpose" property="purpose"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <select id="findAll" resultMap="roomResultMap">
+        select * from room
+    </select>
+
+    <update id="updateRoom" parameterType="xh.nursinghome.system.entity.RoomDO">
+        update room set building_id=#{buildingId},room_name=#{roomName},area=#{area},purpose=#{purpose},status=#{status} where id=#{id};
+    </update>
+
+    <insert id="addRoom" parameterType="xh.nursinghome.system.entity.RoomDO">
+        insert into room (building_id,room_name,area,purpose,status)
+        VALUES (#{buildingId},#{roomName},#{area},#{purpose},#{status})
+    </insert>
+
+    <select id="findComplex" resultMap="roomResultMap" >
+        select * from room
+        <where>
+            <if test="roomName != null and roomName !='' and roomName !='0'.toString()" >
+                room_name LIKE CONCAT('%',#{roomName},'%')
+            </if>
+            <if test="purpose != null and purpose !='' and purpose !='0'.toString()">
+                and purpose=#{purpose}
+            </if>
+            <if test="buildingId != null and buildingId !='' and buildingId !='0'.toString()">
+                and building_id=#{buildingId}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

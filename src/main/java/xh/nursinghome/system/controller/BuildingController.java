@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import xh.nursinghome.system.entity.BuildingDO;
 import xh.nursinghome.system.entity.DishDO;
 import xh.nursinghome.system.entity.RecipeDetailDO;
+import xh.nursinghome.system.entity.RoomDO;
 import xh.nursinghome.system.service.BuildingService;
+import xh.nursinghome.system.service.RoomService;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +24,8 @@ import java.util.Map;
 public class BuildingController {
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private RoomService roomService;
     
     @GetMapping("/buildingFindAll")
     public Map<String,Object> buildingFindAll(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
@@ -75,6 +79,63 @@ public class BuildingController {
 
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
         String fileName= URLEncoder.encode("楼宇数据","UTF-8");
+        response.setHeader("Content-Disposition","attachment;filename="+fileName+".xlsx");
+
+        ServletOutputStream out=response.getOutputStream();
+        writer.flush(out,true);
+        out.close();
+        writer.close();
+    }
+
+    //以下是房间管理
+    @GetMapping("/roomFindAll")
+    public Map<String,Object> roomFindAll(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
+        Map<String,Object> res=new HashMap<>();
+        Page<RoomDO> page = PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> roomService.findAll());
+        res.put("data",page.getResult());
+        res.put("total",page.getTotal());
+        return res;
+    }
+    @PostMapping("/roomAdd")
+    public boolean roomAdd(@RequestBody RoomDO roomDO){
+        List<RoomDO> roomDOS=roomService.findAll();
+        String roomName=roomDO.getRoomName();
+        for(RoomDO roomDO1:roomDOS){
+            if(roomDO1.getRoomName().equals(roomName)){
+                return false;
+            }
+        }
+        return roomService.addRoom(roomDO);
+    }
+    @PostMapping("/roomUpdate")
+    public boolean roomUpdate(@RequestBody RoomDO roomDO){
+        return roomService.updateRoom(roomDO);
+    }
+
+    @GetMapping("/roomFindComplex")
+    public Map<String,Object> roomFindComplex(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam String input1,@RequestParam String input2,@RequestParam String input3){
+        Map<String,Object> res=new HashMap<>();
+        Page<RoomDO> page = PageHelper.startPage(pageNum, pageSize).doSelectPage(() -> roomService.findComplex(input1,input2,input3));
+        res.put("data",page.getResult());
+        res.put("total",page.getTotal());
+        return res;
+    }
+
+    @GetMapping("/roomExport")
+    public void roomExport(HttpServletResponse response)throws Exception{
+        List<RoomDO> list=roomService.findAll();
+        ExcelWriter writer= ExcelUtil.getWriter(true);
+        writer.addHeaderAlias("id","房间id");
+        writer.addHeaderAlias("buildingId","楼宇id");
+        writer.addHeaderAlias("roomName","房间名称");
+        writer.addHeaderAlias("area","面积");
+        writer.addHeaderAlias("purpose","用途");
+        writer.addHeaderAlias("status","状态");
+
+        writer.write(list,true);
+
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8");
+        String fileName= URLEncoder.encode("房间数据","UTF-8");
         response.setHeader("Content-Disposition","attachment;filename="+fileName+".xlsx");
 
         ServletOutputStream out=response.getOutputStream();

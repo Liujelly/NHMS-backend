@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.DormDAO">
+    <resultMap id="dormResultMap" type="xh.nursinghome.system.entity.DormDO">
+        <id column="id" property="id"/>
+        <result column="building_id" property="buildingId"/>
+        <result column="dorm_name" property="dormName"/>
+        <result column="dorm_type" property="dormType"/>
+        <result column="bed_status" property="bedStatus"/>
+        <result column="bed_available" property="bedAvailable"/>
+        <result column="elderly_names" property="elderlyNames"/>
+    </resultMap>
+    <select id="findAll" resultMap="dormResultMap">
+        select * from dorm
+    </select>
+
+    <update id="updateDorm" parameterType="xh.nursinghome.system.entity.DormDO">
+        update dorm set building_id=#{buildingId},
+                        dorm_name=#{dormName},
+                        dorm_type=#{dormType},bed_status=#{bedStatus},
+                        bed_available=#{bedAvailable} ,elderly_names=#{elderlyNames}
+        where id=#{id};
+    </update>
+
+    <insert id="addDorm" parameterType="xh.nursinghome.system.entity.DormDO">
+        insert into dorm (building_id,dorm_name,dorm_type,bed_status,bed_available,elderly_names)
+        VALUES (#{buildingId},#{dormName},#{dormType},#{bedStatus},#{bedAvailable},#{elderlyNames})
+    </insert>
+
+    <select id="findComplex" resultMap="dormResultMap" >
+        select * from dorm
+        <where>
+            <if test="buildingId != null and buildingId !='' and buildingId !='0'.toString()" >
+                building_id=#{buildingId}
+            </if>
+            <if test="dormType != null and dormType !='' and dormType !='0'.toString()">
+                and  dorm_type LIKE CONCAT('%',#{dormType},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="delete" parameterType="xh.nursinghome.system.entity.DormDO">
+        delete from dorm where id=#{id}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.InfrastructureDAO">
+    <resultMap id="infrastructureResultMap" type="xh.nursinghome.system.entity.InfrastructureDO">
+        <id column="id" property="id"/>
+        <result column="building_id" property="buildingId"/>
+        <result column="location" property="location"/>
+        <result column="facility_type" property="facilityType"/>
+        <result column="facility_name" property="facilityName"/>
+        <result column="start_time" property="startTime"/>
+        <result column="shelf_life" property="shelfLife"/>
+        <result column="repair_number" property="repairNumber"/>
+        <result column="status" property="status"/>
+        <result column="repair_phone" property="repairPhone"/>
+    </resultMap>
+    <select id="findAll" resultMap="infrastructureResultMap">
+        select * from infrastructure
+    </select>
+
+    <update id="updateInfrastructure" parameterType="xh.nursinghome.system.entity.InfrastructureDO">
+        update infrastructure set building_id=#{buildingId},
+                                  location=#{location},
+                                  facility_type=#{facilityType},
+                                  facility_name=#{facilityName},
+                                  start_time=#{startTime} ,
+                                  shelf_life=#{shelfLife},
+                                  repair_number=#{repairNumber},
+                                  status=#{status},
+                                  repair_phone=#{repairPhone}
+        where id=#{id};
+    </update>
+
+    <insert id="addInfrastructure" parameterType="xh.nursinghome.system.entity.InfrastructureDO">
+        insert into infrastructure (building_id,location,facility_type,facility_name,start_time,
+                                    shelf_life,repair_number,status,repair_phone)
+        VALUES (#{buildingId},#{location},#{facilityType},#{facilityName},#{startTime},#{shelfLife},
+                #{repairNumber},#{status},#{repairPhone})
+    </insert>
+
+    <select id="findComplex" resultMap="infrastructureResultMap" >
+        select * from infrastructure
+        <where>
+            <if test="buildingId != null and buildingId !=''" >
+                building_id=#{buildingId}
+            </if>
+            <if test="facilityType != null and facilityType !='' ">
+                and  facility_type LIKE CONCAT('%',#{facilityType},'%')
+            </if>
+            <if test="facilityName != null and facilityName !='' ">
+                and  facility_name LIKE CONCAT('%',#{facilityName},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteInfrastructure" parameterType="xh.nursinghome.system.entity.InfrastructureDO">
+        delete from infrastructure where id=#{id}
+    </delete>
+
+
+</mapper>
