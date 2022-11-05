@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.DormitoryMapper">
+    <select id="SelectDormitory" resultType="DormDO">
+        select * from dorm where bed_status like concat('%', #{bedStatus}, '%') limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from dorm where bed_status like concat('%', #{bedStatus}, '%')
+    </select>
+    <select id="Select" resultType="elderly">
+        select * from elderly
+    </select>
+    <select id="SelectDormitory1" resultType="DormDO">
+        select * from dorm  where dormitoryid=#{dormitoryid} and buildingid=#{buildingid}
+    </select>
+    <select id="SelectElderly" resultType="elderly">
+        select * from elderly where id=#{id}
+    </select>
+    <update id="UpdateDormitory2" >
+        update dorm set bed_available=#{bedAvailable},elderly_ids=CONCAT(#{elderlyIds}) where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <update id="UpdateDormitory" >
+        update dorm set bed_available=#{bedAvailable},elderly_ids=CONCAT(elderly_ids,"、",#{elderlyIds}) where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <update id="UpdateDormitory1" >
+        update dorm set bed_available=#{bedAvailable},elderly_ids=CONCAT(elderly_ids,"、",#{elderlyIds}),bed_status="已满员" where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <update id="UpdateElderly">
+        update elderly set buildingid=#{buildingId},dormitoryid=#{dormName} where id=#{id}
+    </update>
+</mapper>

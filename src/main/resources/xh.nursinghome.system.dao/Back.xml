@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.BackMapper">
+
+    <select id="SelectBack" resultType="back">
+        select * from back1 where name like concat('%', #{name}, '%')
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from back1 where name like concat('%', #{name}, '%')
+    </select>
+    <select id="Select" resultType="elderly">
+        select * from elderly where state="请假中"
+    </select>
+    <select id="SelectBack1" resultType="back">
+        select * from back1
+    </select>
+    <select id="SelectElderlyid" resultType="elderly">
+        select * from elderly where id=#{id}
+    </select>
+    <insert id="InsertBack">
+        INSERT into back1 values (#{id},#{name},#{tel},#{backtime},#{state})
+    </insert>
+    <delete id="DeleteBack">
+        Delete from back1 where id=#{id}
+    </delete>
+    <update id="UpdateElderly">
+        Update elderly set state="入住中" where id=#{id}
+    </update>
+    <update id="UpdateLeaveArchive">
+        Update leavearchive set backtime=#{backtime} where id=#{id}
+    </update>
+</mapper>

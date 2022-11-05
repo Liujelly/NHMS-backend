@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RApprovalMapper">
+
+    <select id="Select" resultType="elderly">
+        select * from elderly
+    </select>
+    <select id="SelectRetreat" resultType="retreat">
+        select * from retreat limit #{pageNum},#{pageSize}
+    </select>
+    <select id="SelectElderly" resultType="elderly">
+        select * from elderly where id=#{id}
+    </select>
+    <insert id="InsertOutArchive">
+        insert into outarchive values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},#{buildingid},#{dormitoryid},#{state},#{outtime})
+    </insert>
+    <select id="total" resultType="Integer">
+        select count(*) from retreat
+    </select>
+    <delete id="DeleteRetreat" >
+        Delete from retreat where id=#{id}
+    </delete>
+    <delete id="DeleteElderly">
+        Delete from elderly where id=#{id}
+    </delete>
+    <update id="UpdateDormitory">
+        Update dorm set bed_available=bed_available+1,elderly_ids=#{elderlyIds} where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <update id="UpdateDormitory1">
+        Update dorm set bed_available=bed_available+1,bed_status="未满员",elderly_ids=#{elderlyIds} where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <select id="SelectDormitory" resultType="DormDO">
+        select * from dorm  where dorm_name=#{dormName} and building_id=#{buildingId}
+    </select>
+</mapper>

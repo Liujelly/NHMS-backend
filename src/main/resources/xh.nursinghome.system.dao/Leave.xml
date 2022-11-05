@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="xh.nursinghome.system.dao.LeaveMapper">
+
+    <select id="SelectLeave" resultType="leave">
+        select * from leave1 where name like concat('%', #{name}, '%')
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from leave1 where name like concat('%', #{name}, '%')
+    </select>
+    <select id="Select" resultType="elderly">
+        select * from elderly
+    </select>
+    <select id="SelectLeave1" resultType="leave">
+        select * from leave1
+    </select>
+    <select id="SelectElderlyid" resultType="elderly">
+        select * from elderly where id=#{id}
+    </select>
+    <insert id="InsertLeave">
+        INSERT into leave1 values (#{id},#{name},#{tel},#{ltime},#{duration})
+    </insert>
+    <delete id="DeleteLeave">
+        Delete from leave1 where id=#{id}
+    </delete>
+    <update id="UpdateElderly">
+        Update elderly set state="请假中" where id=#{id}
+    </update>
+    <insert id="InsertLeaveArchive">
+        insert into leavearchive values (#{id},#{name},#{tel},#{ltime},null)
+    </insert>
+</mapper>

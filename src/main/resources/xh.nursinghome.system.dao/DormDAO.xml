@@ -9,7 +9,7 @@
         <result column="dorm_type" property="dormType"/>
         <result column="bed_status" property="bedStatus"/>
         <result column="bed_available" property="bedAvailable"/>
-        <result column="elderly_names" property="elderlyNames"/>
+        <result column="elderly_ids" property="elderlyIds"/>
     </resultMap>
     <select id="findAll" resultMap="dormResultMap">
         select * from dorm
@@ -19,13 +19,13 @@
         update dorm set building_id=#{buildingId},
                         dorm_name=#{dormName},
                         dorm_type=#{dormType},bed_status=#{bedStatus},
-                        bed_available=#{bedAvailable} ,elderly_names=#{elderlyNames}
+                        bed_available=#{bedAvailable} ,elderly_ids=#{elderlyIds}
         where id=#{id};
     </update>
 
     <insert id="addDorm" parameterType="xh.nursinghome.system.entity.DormDO">
-        insert into dorm (building_id,dorm_name,dorm_type,bed_status,bed_available,elderly_names)
-        VALUES (#{buildingId},#{dormName},#{dormType},#{bedStatus},#{bedAvailable},#{elderlyNames})
+        insert into dorm (building_id,dorm_name,dorm_type,bed_status,bed_available,elderly_ids)
+        VALUES (#{buildingId},#{dormName},#{dormType},#{bedStatus},#{bedAvailable},#{elderlyIds})
     </insert>
 
     <select id="findComplex" resultMap="dormResultMap" >

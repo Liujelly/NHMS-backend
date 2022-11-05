@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.InArchiveMapper">
+
+    <select id="SelectInArchive" resultType="inarchive">
+        select * from inarchive where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%') limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from inarchive where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%')
+    </select>
+    <select id="SelectCheckIn" resultType="checkin">
+        select * from checkin where id=#{id}
+    </select>
+    <delete id="DeleteElderly">
+        delete from elderly where id=#{id}
+    </delete>
+    <insert id="InsertCheckIn">
+        insert into checkin values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education})
+    </insert>
+    <delete id="DeleteInArchive">
+        delete from inarchive where id=#{id}
+    </delete>
+    <select id="SelectElderly" resultType="elderly">
+        select * from elderly where id=#{id}
+    </select>
+    <update id="UpdateDormitory">
+        Update dorm set bed_available=bed_available+1,elderly_ids=#{elderlyIds} where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <update id="UpdateDormitory1">
+        Update dorm set bed_available=bed_available+1,bed_status="未满员",elderly_ids=#{elderlyIds} where building_id=#{buildingId} and dorm_name=#{dormName}
+    </update>
+    <select id="SelectDormitory" resultType="DormDO">
+        select * from dorm  where dorm_name=#{dormName} and building_id=#{buildingId}
+    </select>
+
+</mapper>

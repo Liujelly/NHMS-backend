@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RetreatMapper">
+
+    <select id="Select" resultType="elderly">
+        select * from elderly
+    </select>
+    <select id="SelectRetreat" resultType="retreat">
+        select * from retreat where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%') limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from retreat where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%')
+    </select>
+  <select id="SelectElderlyid" resultType="elderly">
+      select * from elderly where id=#{id}
+  </select>
+    <insert id="Insertretreat">
+        insert into retreat values (#{id},#{name},#{age},#{sex},#{buildingid},#{dormitoryid})
+    </insert>
+    <select id="SelectRetreat1" resultType="retreat">
+        select * from retreat
+    </select>
+    <update id="UpdateRetreat">
+        update retreat set name=#{name},age=#{age},sex=#{sex},buildingid=#{buildingid},dormitoryid=#{dormitoryid} where id=#{id}
+    </update>
+    <delete id="DeleteRetreat">
+        delete from retreat where id=#{id}
+    </delete>
+</mapper>

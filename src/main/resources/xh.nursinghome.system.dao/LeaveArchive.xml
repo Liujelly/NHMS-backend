@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.LeaveArchiveMapper">
+
+    <select id="SelectLeaveArchive" resultType="leavearchive">
+        select * from leavearchive where name like concat('%', #{name}, '%')  limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from leavearchive where name like concat('%', #{name}, '%')
+    </select>
+    <select id="SelectElderly" resultType="elderly">
+        select * form elderly where id=#{id}
+    </select>
+
+</mapper>

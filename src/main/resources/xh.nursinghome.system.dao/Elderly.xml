@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.ElderlyMapper">
+
+    <select id="Select" resultType="elderly">
+        select * from elderly
+    </select>
+    <select id="SelectElderly" resultType="elderly">
+        select * from elderly where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%') limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from elderly where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%')
+    </select>
+    <insert id="InsertElderly">
+        insert into elderly(id,name,age,sex,tel,address,idcard,nation,education) values (null,#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education})
+    </insert>
+    <update id="UpdateElderly">
+        update elderly set name=#{name},age=#{age},sex=#{sex},tel=#{tel},address=#{address},idcard=#{idcard},nation=#{nation},education=#{education} where id=#{id}
+    </update>
+    <delete id="DeleteElderly">
+        delete from elderly where id=#{id}
+    </delete>
+</mapper>

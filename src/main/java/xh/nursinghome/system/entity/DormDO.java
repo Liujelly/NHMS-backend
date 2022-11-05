@@ -7,7 +7,7 @@ public class DormDO {
     private String dormType;
     private String bedStatus;
     private int bedAvailable;
-    private String elderlyNames;
+    private String elderlyIds;
 
     public int getId() {
         return id;
@@ -57,11 +57,11 @@ public class DormDO {
         this.bedAvailable = bedAvailable;
     }
 
-    public String getElderlyNames() {
-        return elderlyNames;
+    public String getElderlyIds() {
+        return elderlyIds;
     }
 
-    public void setElderlyNames(String elderlyNames) {
-        this.elderlyNames = elderlyNames;
+    public void setElderlyIds(String elderlyIds) {
+        this.elderlyIds = elderlyIds;
     }
 }
