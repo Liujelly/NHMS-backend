@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.entity.BuildingDO;
 import xh.nursinghome.system.entity.DormDO;
 import xh.nursinghome.system.service.BuildingService;
@@ -26,6 +27,7 @@ public class DormController {
     @Autowired
     private BuildingService buildingService;
 
+    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "查询",operDesc = "查询所有宿舍")
     @GetMapping("/dormFindAll")
     public Map<String,Object> dormFindAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -41,6 +43,7 @@ public class DormController {
         res.put("buildingIds",buildingIds);
         return res;
     }
+    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "新增",operDesc = "新增宿舍")
     @PostMapping("/dormAdd")
     public boolean dormAdd(@RequestBody DormDO dormDO){
         //判断楼宇id
@@ -69,6 +72,7 @@ public class DormController {
         return dormService.updateDorm(dormDO);
     }
 
+    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "查询",operDesc = "搜索宿舍")
     @GetMapping("/dormFindComplex")
     public Map<String,Object> dormFindComplex(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam String input1,@RequestParam String input2){
         Map<String,Object> res=new HashMap<>();
@@ -77,11 +81,13 @@ public class DormController {
         res.put("total",page.getTotal());
         return res;
     }
+    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "删除",operDesc = "删除宿舍")
     @PostMapping("/dormDelete")
     public boolean dormDelete(@RequestBody List<Integer> ids){
         boolean res=dormService.delete(ids);
         return res;
     }
+
 
     @GetMapping("/DormExport")
     public void DormExport(HttpServletResponse response)throws Exception{

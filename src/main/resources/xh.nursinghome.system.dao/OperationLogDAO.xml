@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.OperationLogDAO">
+    <resultMap id="OperationLogResultMap" type="xh.nursinghome.system.entity.OperationLogDO">
+        <id column="id" property="id"/>
+        <result column="user_code" property="userCode"/>
+        <result column="ip" property="ip"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="model" property="model"/>
+        <result column="operation_time" property="operationTime"/>
+    </resultMap>
+    <insert id="save" parameterType="xh.nursinghome.system.entity.OperationLogDO">
+        insert into log (user_code,ip,type,description,model,operation_time)
+        VALUES (#{userCode},#{ip},#{type},#{description},#{model},#{operationTime})
+    </insert>
+
+    <select id="findAll" resultMap="OperationLogResultMap">
+        select * from log ORDER BY operation_time DESC
+    </select>
+
+    <select id="findComplex" resultMap="OperationLogResultMap">
+        select * from log
+        <where>
+            <if test="userCode != null and userCode !=''" >
+                user_code=#{userCode}
+            </if>
+            <if test="model != null and model !='' ">
+                and  model LIKE CONCAT('%',#{model},'%')
+            </if>
+        </where>
+        ORDER BY operation_time DESC
+    </select>
+
+
+
+</mapper>

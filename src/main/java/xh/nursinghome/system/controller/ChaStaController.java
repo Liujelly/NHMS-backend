@@ -2,6 +2,7 @@ package xh.nursinghome.system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.dao.ChangingStandardDAO;
 import xh.nursinghome.system.entity.ChangingStandardDO;
 import xh.nursinghome.system.service.ChaStaService;
@@ -16,7 +17,7 @@ public class ChaStaController {
     private ChangingStandardDAO changingStandardDAO;
     @Autowired
     private ChaStaService chaStaService;
-
+    @OperationLogAnnotation(operModul = "收费标准设置",operType = "查询",operDesc = "查询收费标准")
     @GetMapping("/ChaStaFind")
     public Map<String,Object> ChaStaFind(){
         Map<String,Object> res=new HashMap<>();
