@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.UserDAO">
+    <resultMap id="userResultMap" type="xh.nursinghome.system.entity.UserDO">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="enabled" property="enabled"/>
+        <result column="role" property="role"/>
+        <result column="is_dimission" property="isDimission"/>
+
+    </resultMap>
+    <select id="findUser" resultMap="userResultMap">
+        select * from user where user_name=#{userName}
+    </select>
+
+
+</mapper>
