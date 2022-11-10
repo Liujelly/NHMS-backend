@@ -1,4 +1,4 @@
-package xh.nursinghome.system.module;
+package xh.nursinghome.system.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

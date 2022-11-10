@@ -7,7 +7,7 @@ public class UserDO {
     private String createdBy;
     private String createdTime;
     private Boolean enabled;
-    private String role;
+    private int roleId;
     private String isDimission;
 
     public int getId() {
@@ -58,12 +58,12 @@ public class UserDO {
         this.enabled = enabled;
     }
 
-    public String getRole() {
-        return role;
+    public int getRoleId() {
+        return roleId;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     public String getIsDimission() {

@@ -4,7 +4,7 @@ package xh.nursinghome.system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xh.nursinghome.system.entity.leave;
-import xh.nursinghome.system.module.leave1;
+import xh.nursinghome.system.model.leave1;
 import xh.nursinghome.system.service.impl.LeaveService;
 
 import java.util.Map;

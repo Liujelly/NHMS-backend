@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xh.nursinghome.system.dao.BackMapper;
 import xh.nursinghome.system.entity.back;
-import xh.nursinghome.system.module.back1;
+import xh.nursinghome.system.model.back1;
 import xh.nursinghome.system.entity.elderly;
 
 import java.text.SimpleDateFormat;

@@ -4,7 +4,7 @@ package xh.nursinghome.system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xh.nursinghome.system.entity.DormDO;
-import xh.nursinghome.system.module.dormitory1;
+import xh.nursinghome.system.model.dormitory1;
 import xh.nursinghome.system.service.impl.DormitoryService;
 
 import java.util.Map;

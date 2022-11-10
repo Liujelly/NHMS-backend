@@ -1,4 +1,4 @@
-package xh.nursinghome.system.module;
+package xh.nursinghome.system.model;
 
 public class dormitory1 {
     private int id;

@@ -1,6 +1,6 @@
 package xh.nursinghome.system.entity;
 
-import xh.nursinghome.system.module.Menu;
+import xh.nursinghome.system.model.Menu;
 
 public class MenuDO {
     private int id;

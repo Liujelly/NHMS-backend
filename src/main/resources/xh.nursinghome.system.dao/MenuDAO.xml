@@ -14,5 +14,8 @@
     <select id="findAll" resultMap="menuResultMap">
         select * from menu
     </select>
+    <select id="findById" resultMap="menuResultMap">
+        select * from menu where id=#{id}
+    </select>
 
 </mapper>

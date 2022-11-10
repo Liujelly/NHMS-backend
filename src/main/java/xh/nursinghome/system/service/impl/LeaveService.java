@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import xh.nursinghome.system.dao.LeaveMapper;
 import xh.nursinghome.system.entity.elderly;
 import xh.nursinghome.system.entity.leave;
-import xh.nursinghome.system.module.leave1;
+import xh.nursinghome.system.model.leave1;
 import xh.nursinghome.system.entity.leavearchive;
 
 import java.text.SimpleDateFormat;

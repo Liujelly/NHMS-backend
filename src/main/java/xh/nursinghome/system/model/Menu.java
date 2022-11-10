@@ -1,4 +1,4 @@
-package xh.nursinghome.system.module;
+package xh.nursinghome.system.model;
 
 import java.util.List;
 

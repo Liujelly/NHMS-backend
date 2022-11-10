@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xh.nursinghome.system.dao.OperationLogDAO;
 import xh.nursinghome.system.entity.OperationLogDO;
+import xh.nursinghome.system.utils.JwtTokenUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -73,10 +74,13 @@ public class OperationLogAspect {
         // 获取request
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
         //获取session
-        HttpSession session = request.getSession();
+        String token = request.getHeader("token");
+        JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
+        String userName=jwtTokenUtil.getUsernameFromToken(token);
         // 设置IP地址
         systemLog.setIp(IPUtil.getLocalIP());
-        //这里我是获取登录的用户，我已将登录的用户的信息放进了session
+        //设置登录人
+        systemLog.setUserCode(userName);
         //设置登录时间
         systemLog.setOperationTime(sdf.format(new Date()));
 

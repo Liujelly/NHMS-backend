@@ -3,13 +3,14 @@ package xh.nursinghome.system.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import xh.nursinghome.system.entity.MenuDO;
+import xh.nursinghome.system.entity.RoleDO;
 
 import java.util.List;
 
 @Mapper
 @Repository
-public interface MenuDAO {
-    List<MenuDO> findAll();
-    MenuDO findById(@Param("id") int id);
+public interface RoleDAO {
+    List<RoleDO> findAll();
+    Integer insertRole(RoleDO roleDO);
+    Integer deleteById(@Param("id") int id);
 }

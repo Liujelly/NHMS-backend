@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import xh.nursinghome.system.dao.RecipeDAO;
 import xh.nursinghome.system.dao.RecipeDetailDAO;
 import xh.nursinghome.system.entity.RecipeDO;
-import xh.nursinghome.system.entity.RecipeDetailDO;
-import xh.nursinghome.system.module.Option;
+import xh.nursinghome.system.model.Option;
 import xh.nursinghome.system.service.RecipeService;
 
 import java.text.SimpleDateFormat;

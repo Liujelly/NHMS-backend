@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.RoleDAO">
+    <resultMap id="roleResultMap" type="xh.nursinghome.system.entity.RoleDO">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="name_zh" property="nameZh"/>
+    </resultMap>
+    <select id="findAll" resultMap="roleResultMap">
+        select * from role
+    </select>
+    <insert id="insertRole" parameterType="xh.nursinghome.system.entity.RoleDO">
+        insert into role (name,name_zh) VALUES (#{name},#{nameZh})
+    </insert>
+
+    <delete id="deleteById">
+        delete from role where id=#{id}
+    </delete>
+
+</mapper>

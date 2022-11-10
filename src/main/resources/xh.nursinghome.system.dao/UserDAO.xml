@@ -9,7 +9,7 @@
         <result column="created_by" property="createdBy"/>
         <result column="created_time" property="createdTime"/>
         <result column="enabled" property="enabled"/>
-        <result column="role" property="role"/>
+        <result column="role_id" property="roleId"/>
         <result column="is_dimission" property="isDimission"/>
 
     </resultMap>
