@@ -47,12 +47,7 @@ public class InArchiveService {
                 str3=str3+"、"+a;
             }
         }
-        if (dormitory.getBedAvailable()!=0) {
-            inArchiveMapper.UpdateDormitory(elderly.getBuildingid(),elderly.getDormitoryid(),str3);
-        }
-        else {
-            inArchiveMapper.UpdateDormitory1(elderly.getBuildingid(),elderly.getDormitoryid(),str3);
-        }
+
         checkin checkin=new checkin();
         checkin.setId(elderly.getId());
         checkin.setName(elderly.getName());

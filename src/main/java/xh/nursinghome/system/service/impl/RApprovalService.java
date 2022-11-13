@@ -48,12 +48,7 @@ public class RApprovalService {
                 str3=str3+"、"+a;
             }
         }
-        if (dormitory.getBedAvailable()!=0) {
-            rapprovalMapper.UpdateDormitory(retreat.getBuildingid(),retreat.getDormitoryid(),str3);
-        }
-        else {
-            rapprovalMapper.UpdateDormitory1(retreat.getBuildingid(),retreat.getDormitoryid(),str3);
-        }
+
         elderly elderly= rapprovalMapper.SelectElderly(retreat.getId());
         outarchive outarchive=new outarchive();
         outarchive.setId(elderly.getId());

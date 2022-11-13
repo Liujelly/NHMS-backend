@@ -21,4 +21,7 @@
         delete from elderly where id=#{id}
     </delete>
 
+    <update id="UpdateElderlyDstate">
+        update elderly set dstate=#{dstate},buildingid=0,dormitoryid=null where dormitoryid=#{dormitoryid}
+    </update>
 </mapper>

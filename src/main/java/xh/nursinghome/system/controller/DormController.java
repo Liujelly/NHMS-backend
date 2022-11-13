@@ -7,8 +7,10 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xh.nursinghome.system.aop.OperationLogAnnotation;
+import xh.nursinghome.system.dao.ElderlyMapper;
 import xh.nursinghome.system.entity.BuildingDO;
 import xh.nursinghome.system.entity.DormDO;
+import xh.nursinghome.system.entity.elderly;
 import xh.nursinghome.system.service.BuildingService;
 import xh.nursinghome.system.service.DormService;
 
@@ -26,6 +28,8 @@ public class DormController {
     private DormService dormService;
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private ElderlyMapper elderlyMapper;
 
     @OperationLogAnnotation(operModul = "资料管理-设施管理-宿舍管理",operType = "查询",operDesc = "查询所有宿舍")
     @GetMapping("/dormFindAll")
@@ -86,6 +90,25 @@ public class DormController {
     @PostMapping("/dormDelete")
     public boolean dormDelete(@RequestBody List<Integer> ids){
         boolean res=dormService.delete(ids);
+
+//        List<String> names=new ArrayList<>();
+//        String status="未分配";
+//        for(Integer id:ids){
+//            String name=dormDAO.findNameById(id);
+//            names.add(name);
+//        }
+//        List<elderly> elderlies= elderlyMapper.Select();
+//        for(String name:names) {
+//            for(elderly elder:elderlies){
+//                if(elder.getDormitoryid()==name){
+//                    elderlyMapper.UpdateElderlyDstate(status,name);
+//                }
+//            }
+//        }
+//        boolean res=dormService.delete(ids);
+
+
+
         return res;
     }
 

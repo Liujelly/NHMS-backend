@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.DonateMapper">
+
+    <resultMap id="findUsersResultMap" type="xh.nursinghome.system.entity.donate">
+        <id column="d_id" property="dId"/>
+        <result column="d_name" property="dName"/>
+        <result column="d_sex" property="dSex"/>
+        <result column="d_age" property="dAge"/>
+        <result column="d_phone" property="dPhone"/>
+        <result column="d_goodsname" property="dGoodsname"/>
+        <result column="d-time" property="dTime"/>
+        <result column="d_goodsclass" property="dGoodsclass"/>
+    </resultMap>
+
+    <select id="findUsers" resultMap="findUsersResultMap">
+    select * from donate
+    </select>
+
+
+
+</mapper>
+

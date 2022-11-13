@@ -16,5 +16,6 @@ public interface ElderlyMapper {
     Integer InsertElderly(elderly elderly);
     Integer UpdateElderly(elderly elderly);
     Integer DeleteElderly(@Param("id")Integer id);
+    Integer UpdateElderlyDstate(@Param("dstate") String dstate,@Param("dormitoryid")String dormitoryid );
 
 }

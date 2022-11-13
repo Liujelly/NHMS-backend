@@ -15,6 +15,10 @@
         select * from dorm
     </select>
 
+    <select id="findNameById" resultMap="dormResultMap">
+        select dorm_name from dorm where id=#{id}
+    </select>
+
     <update id="updateDorm" parameterType="xh.nursinghome.system.entity.DormDO">
         update dorm set building_id=#{buildingId},
                         dorm_name=#{dormName},

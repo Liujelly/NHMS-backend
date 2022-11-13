@@ -29,6 +29,7 @@ public class RetreatService {
     {
         List<elderly> elderlies=retreatMapper.Select();
         List<elderly> elderlies1=new ArrayList<>();
+        List<elderly> elderlies2=new ArrayList<>();
         List<retreat> retreats=retreatMapper.SelectRetreat1();
         List<Integer> integers=new ArrayList<>();
         for (retreat retreat:retreats) {
@@ -39,8 +40,15 @@ public class RetreatService {
                 elderlies1.add(elderly);
             }
         }
+        for (elderly elderly:elderlies1)
+        {
+            if(elderly.getBuildingid()!=null)
+            {
+                elderlies2.add(elderly);
+            }
+        }
         Map<String,Object> res=new HashMap<>();
-        res.put("data",elderlies1);
+        res.put("data",elderlies2);
         return res;
     }
     public Integer Insertretreat(Integer ida)

@@ -17,6 +17,7 @@ import xh.nursinghome.system.entity.EmployeeCount;
 import xh.nursinghome.system.service.EmployeeService;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -61,6 +62,12 @@ public class EmployeeServiceImpl extends ServiceImpl<EmployeeMapper, Employee> i
     @Override
     public int add(Employee employee) {
         employee.setDeleted(Constant.UNDELETED);
+        Date now=new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        String time = sdf.format(now);
+        String idNO=employee.getIdNo();
+        String idNoTwo = idNO.substring(idNO.length() -2);
+        employee.setEmployeeId(time+idNoTwo);
         employee.setPhotoUrl("b26f8c7967d34b47932ba1e5cca93d7c.png");
         employee.setCreateTime(new Date());
         employee.setUpdateTime(new Date());

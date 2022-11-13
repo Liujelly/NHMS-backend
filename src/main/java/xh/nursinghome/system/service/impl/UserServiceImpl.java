@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xh.nursinghome.system.dao.RoleDAO;
 import xh.nursinghome.system.dao.UserDAO;
+import xh.nursinghome.system.entity.Employee;
 import xh.nursinghome.system.entity.OperationLogDO;
 import xh.nursinghome.system.entity.RoleDO;
 import xh.nursinghome.system.entity.UserDO;
 import xh.nursinghome.system.model.Option;
+import xh.nursinghome.system.service.EmployeeService;
 import xh.nursinghome.system.service.PermissionsService;
 import xh.nursinghome.system.service.UserService;
 import xh.nursinghome.system.utils.JwtTokenUtil;
@@ -26,6 +28,8 @@ public class UserServiceImpl implements UserService {
     private PermissionsService permissionsService;
     @Autowired
     private RoleDAO roleDAO;
+    @Autowired
+    private EmployeeService employeeService;
 
     //同时查询所有角色
     @Override
@@ -81,6 +85,8 @@ public class UserServiceImpl implements UserService {
         JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
         String username=jwtTokenUtil.getUsernameFromToken(token);
         userDO.setCreatedBy(username);
+        Employee employee = employeeService.getById(userDO.getUserName());
+        userDO.setRelName(employee.getEmployeeName());
         Integer res=userDAO.addUser(userDO);
         if(res==1){
             return true;

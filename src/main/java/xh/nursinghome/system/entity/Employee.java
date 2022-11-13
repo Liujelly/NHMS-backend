@@ -27,6 +27,9 @@ public class Employee extends PageBase implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "员工工号")
+    private String employeeId;
+
     @ApiModelProperty(value = "员工名称")
     private String employeeName;
 

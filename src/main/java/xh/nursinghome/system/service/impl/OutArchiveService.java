@@ -39,7 +39,6 @@ public class OutArchiveService {
         if (dormDO.getBedAvailable()==1)
         {
             kp=str+"、"+id1;
-            outArchiveMapper.UpdateDorm1(buildingid,dormitoryid,kp);
             outArchiveMapper.InsertElderly1(outarchive);
             outArchiveMapper.InsertRetreat1(outarchive);
             outArchiveMapper.DeleteOutArchive(outarchive.getId());
@@ -58,13 +57,11 @@ public class OutArchiveService {
         } else if (str==null)
         {
             kp=id1;
-            outArchiveMapper.UpdateDorm(buildingid,dormitoryid,kp);
             outArchiveMapper.InsertElderly1(outarchive);
             outArchiveMapper.InsertRetreat1(outarchive);
             outArchiveMapper.DeleteOutArchive(outarchive.getId());
         } else {
             kp=str+"、"+id1;
-            outArchiveMapper.UpdateDorm(buildingid,dormitoryid,kp);
             outArchiveMapper.InsertElderly1(outarchive);
             outArchiveMapper.InsertRetreat1(outarchive);
             outArchiveMapper.DeleteOutArchive(outarchive.getId());
