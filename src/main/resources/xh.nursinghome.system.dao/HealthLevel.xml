@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xh.nursinghome.system.dao.HealthLevelMapper">
+
+    <resultMap id="showLevelResultMap" type="xh.nursinghome.system.entity.HealthLevel">
+        <id column="health_level_id" property="healthLevelId"/>
+        <result column="order_id" property="orderId"/>
+        <result column="order_name" property="orderName"/>
+        <result column="health_index_num" property="healthIndexNum"/>
+        <result column="health_level_num" property="healthLevelNum"/>
+        <result column="suggest" property="suggest"/>
+    </resultMap>
+
+    <select id="showLevel" resultMap="showLevelResultMap">
+        select * from health_level
+        <where>
+            <if test="orderId != null and orderId !='' and orderId !='0'.toString()" >
+                order_id=#{orderId}
+            </if>
+            <if test="orderName != null and orderName !='' and orderName !='0'.toString()">
+                and  order_name LIKE CONCAT('%',#{orderName},'%')
+            </if>
+        </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+
+
+    <insert id="addName">
+        insert into health_level(order_id,order_name,health_index_num)
+        values (#{orderId},#{orderName},#{healthIndexNum})
+    </insert>
+    <update id="addLevel">
+
+        update health_level
+        <set>
+            <if test="healthIndexNum!=null">
+                health_index_num=#{healthIndexNum},
+            </if>
+            <if test="healthLevelNum!=null">
+                health_level_num=#{healthLevelNum},
+            </if>
+            <if test="suggest!=null">
+                suggest=#{suggest},
+            </if>
+        </set>
+        <where>
+            order_id=#{orderId}
+        </where>
+    </update>
+    <update id="updateAnalysis">
+        update health_level
+        <set>
+            <if test="suggest!=null">
+                suggest=#{suggest}
+            </if>
+        </set>
+        <where>
+            order_id=#{orderId}
+        </where>
+    </update>
+</mapper>

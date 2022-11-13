@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xh.nursinghome.system.dao.OrderManMapper">
+
+
+    <resultMap id="selectPageResultMap" type="xh.nursinghome.system.entity.OrderMan">
+        <id column="order_id" property="orderId"/>
+        <result column="order_name" property="orderName"/>
+        <result column="order_id_card" property="orderIdCard"/>
+        <result column="order_state" property="orderState"/>
+    </resultMap>
+
+    <select id="selectPage" resultMap="selectPageResultMap">
+    select * from order_man
+    <where>
+        <if test="orderId != null and orderId !='' and orderId !='0'.toString()" >
+            order_id=#{orderId}
+        </if>
+        <if test="orderName != null and orderName !='' and orderName !='0'.toString()">
+            and  order_name LIKE CONCAT('%',#{orderName},'%')
+        </if>
+        <if test="orderIdCard != null and orderIdCard !='' and orderIdCard !='0'.toString()">
+            and  order_id_card LIKE CONCAT('%',#{orderIdCard},'%')
+        </if>
+    </where>
+        limit #{pageNum},#{pageSize}
+    </select>
+
+
+
+
+
+    <select id="selectTotal" resultType="integer">
+        select count(order_id)from order_man;
+    </select>
+
+    <insert id="insert">
+        INSERT INTO order_man(username,`password`,nickname,email,phone,address)VALUES(#{username},#{password},#{nickname},#{email},#{phone},#{address})
+    </insert>
+    <update id="update">
+        update order_man
+        <set>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="nickname!=null">
+                nickname=#{nickname},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="phone!=null">
+                phone=#{phone},
+            </if>
+            <if test="address!=null">
+                address=#{address}
+            </if>
+        </set>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+    <delete id="deleteById">
+        delete from order_man where id=#{id}
+    </delete>
+    <delete id="deleteBatch" parameterType="Integer">
+        delete from order_man where id in
+        <foreach item="ids" collection="list" index="index" open="("
+                 separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
+    <update id="examStateChange">
+        update order_man set order_state='已录入' where order_id=#{orderId}
+    </update>
+</mapper>

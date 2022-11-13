@@ -9,10 +9,10 @@
         select count(*) from outarchive where name like concat('%', #{name}, '%')  and sex like concat('%', #{sex}, '%')
     </select>
     <insert id="InsertElderly">
-        insert into elderly values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},null,null,#{state})
+        insert into elderly values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},null,null,#{state},"未分配")
     </insert>
     <insert id="InsertElderly1">
-        insert into elderly values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},#{buildingid},#{dormitoryid},#{state})
+        insert into elderly values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},#{buildingid},#{dormitoryid},#{state},#{dstate})
     </insert>
     <select id="SelectDorm" resultType="DormDO">
         select * from dorm where building_id=#{buildingId} and dorm_name=#{dormName}

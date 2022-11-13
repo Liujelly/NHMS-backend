@@ -68,6 +68,7 @@ public class RApprovalService {
         outarchive.setBuildingid(elderly.getBuildingid());
         outarchive.setDormitoryid(elderly.getDormitoryid());
         outarchive.setState(elderly.getState());
+        outarchive.setDstate(elderly.getDstate());
         LocalDate now = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String str = formatter.format(now);

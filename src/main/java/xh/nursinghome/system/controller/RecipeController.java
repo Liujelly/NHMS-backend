@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.dao.RecipeDAO;
 import xh.nursinghome.system.entity.DishDO;
 import xh.nursinghome.system.entity.RecipeDO;
@@ -32,7 +33,7 @@ public class RecipeController {
     @Autowired
     private RecipeDAO recipeDAO;
 
-
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "查询",operDesc = "查询所有菜品信息")
     @GetMapping("/dishFindAll")
     public Map<String,Object> dishFindAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -41,6 +42,8 @@ public class RecipeController {
         res.put("total",page.getTotal());
         return res;
     }
+
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "添加",operDesc = "添加菜品")
     @PostMapping("/dishAdd")
     public boolean dishAdd(@RequestBody DishDO dishDO){
         Integer res=dishService.add(dishDO);
@@ -49,6 +52,7 @@ public class RecipeController {
         }else{return false;}
     }
 
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "更新",operDesc = "更新菜品")
     @PostMapping("/dishUpdate")
     public boolean dishUpdate(@RequestBody DishDO dishDO){
         Integer res=dishService.update(dishDO);
@@ -57,6 +61,7 @@ public class RecipeController {
         }else{return false;}
     }
 
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "查询",operDesc = "复合菜品信息")
     @GetMapping("/dishFindComplex")
     public Map<String,Object> dishFindComplex(@RequestParam Integer pageNum, @RequestParam Integer pageSize,
                                               @RequestParam String input1,@RequestParam String input2,@RequestParam String input3,@RequestParam String input4){
@@ -93,18 +98,21 @@ public class RecipeController {
     }
 
     //以下是食谱管理
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "查询",operDesc = "查询所有食谱信息")
     @GetMapping("/findRecipe")
     public Map<String,Object> findRecipe(){
         Map<String,Object> res=recipeService.findAll();
         return res;
     }
 
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "查询",operDesc = "查询所有食谱详细信息")
     @GetMapping("/findRecipeDetail")
     public Map<String,Object> findRecipeDetail(@RequestParam int index){
         Map<String,Object> res=recipeDetailService.findByRecipeId(index);
         return res;
     }
 
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "添加",operDesc = "添加食谱")
     @PostMapping("/addRecipe")
     public boolean addRecipe(@RequestBody RecipeDO recipeDO){
         List<RecipeDO> recipeDOS=recipeDAO.findAll();
@@ -120,6 +128,8 @@ public class RecipeController {
             return true;
         }else{return false;}
     }
+
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "查询",operDesc = "查询所有食谱信息")
     @PostMapping("/updateRecipeDetail")
     public boolean updateRecipeDetail(@RequestBody List<RecipeDetailDO> recipeDetailDOS){
         Integer res=recipeDetailService.updateById(recipeDetailDOS);
@@ -128,8 +138,9 @@ public class RecipeController {
         } else{
             return false;
         }
-
     }
+
+    @OperationLogAnnotation(operModul = "资料管理-食谱管理",operType = "删除",operDesc = "删除食谱")
     @PostMapping("/deleteRecipe")
     public boolean deleteRecipe(@RequestBody List<RecipeDetailDO> recipeDetailDOS){
         int recipeId=recipeDetailDOS.get(0).getRecipeId();

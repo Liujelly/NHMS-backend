@@ -20,4 +20,5 @@
     <delete id="DeleteElderly">
         delete from elderly where id=#{id}
     </delete>
+
 </mapper>

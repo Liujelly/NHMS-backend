@@ -27,7 +27,7 @@ public class DormController {
     @Autowired
     private BuildingService buildingService;
 
-    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "查询",operDesc = "查询所有宿舍")
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-宿舍管理",operType = "查询",operDesc = "查询所有宿舍")
     @GetMapping("/dormFindAll")
     public Map<String,Object> dormFindAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -43,7 +43,7 @@ public class DormController {
         res.put("buildingIds",buildingIds);
         return res;
     }
-    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "新增",operDesc = "新增宿舍")
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-宿舍管理",operType = "新增",operDesc = "新增宿舍")
     @PostMapping("/dormAdd")
     public boolean dormAdd(@RequestBody DormDO dormDO){
         //判断楼宇id
@@ -67,6 +67,7 @@ public class DormController {
         }
         return dormService.addDorm(dormDO);
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-宿舍管理",operType = "更新",operDesc = "更新宿舍信息")
     @PostMapping("/dormUpdate")
     public boolean dormUpdate(@RequestBody DormDO dormDO){
         return dormService.updateDorm(dormDO);
@@ -81,7 +82,7 @@ public class DormController {
         res.put("total",page.getTotal());
         return res;
     }
-    @OperationLogAnnotation(operModul = "设施管理-宿舍管理",operType = "删除",operDesc = "删除宿舍")
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-宿舍管理",operType = "删除",operDesc = "删除宿舍")
     @PostMapping("/dormDelete")
     public boolean dormDelete(@RequestBody List<Integer> ids){
         boolean res=dormService.delete(ids);

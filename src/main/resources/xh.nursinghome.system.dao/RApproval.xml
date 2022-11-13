@@ -12,7 +12,7 @@
         select * from elderly where id=#{id}
     </select>
     <insert id="InsertOutArchive">
-        insert into outarchive values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},#{buildingid},#{dormitoryid},#{state},#{outtime})
+        insert into outarchive values (#{id},#{name},#{age},#{sex},#{tel},#{address},#{idcard},#{nation},#{education},#{buildingid},#{dormitoryid},#{state},#{outtime},#{dstate})
     </insert>
     <select id="total" resultType="Integer">
         select count(*) from retreat

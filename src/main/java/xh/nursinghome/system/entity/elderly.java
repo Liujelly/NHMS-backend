@@ -14,6 +14,15 @@ public class elderly {
 
     private Integer buildingid;
     private String state;
+    private String dstate;
+
+    public String getDstate() {
+        return dstate;
+    }
+
+    public void setDstate(String dstate) {
+        this.dstate = dstate;
+    }
 
     public String getState() {
         return state;

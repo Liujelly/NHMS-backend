@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xh.nursinghome.system.dao.HealthIndexStandardMapper">
+
+    <resultMap id="showStandardResultMap" type="xh.nursinghome.system.entity.HealthIndexStandard">
+        <id column="standard_id" property="standardId"/>
+        <result column="text_name" property="textName"/>
+        <result column="heart_rate_good_high" property="heartRateGoodHigh"/>
+        <result column="heart_rate_good_low" property="heartRateGoodLow"/>
+        <result column="heart_rate_mid_high" property="heartRateMidHigh"/>
+        <result column="heart_rate_mid_low" property="heartRateMidLow"/>
+        <result column="heart_rate_bad_high" property="heartRateBadHigh"/>
+        <result column="heart_rate_bad_low" property="heartRateBadLow"/>
+        <result column="blood_oxygen_good" property="bloodOxygenGood"/>
+        <result column="blood_oxygen_mid" property="bloodOxygenMid"/>
+        <result column="blood_pressure_high_good" property="bloodPressureHighGood"/>
+        <result column="blood_pressure_mid_good" property="bloodPressureMidGood"/>
+        <result column="blood_pressure_low_good" property="bloodPressureLowGood"/>
+        <result column="blood_glucose_high" property="bloodGlucoseHigh"/>
+        <result column="blood_glucose_low" property="bloodGlucoseLow"/>
+        <result column="blood_fat_high" property="bloodFatHigh"/>
+        <result column="blood_fat_low" property="bloodFatLow"/>
+        <result column="temperature_good_high" property="temperatureGoodHigh"/>
+        <result column="temperature_good_low" property="temperatureGoodLow"/>
+        <result column="temperature_bad_high" property="temperatureBadHigh"/>
+        <result column="temperature_bad_higher" property="temperatureBadHigher"/>
+    </resultMap>
+    <select id="showStandard" resultMap="showStandardResultMap">
+        select * from health_index_standard
+    </select>
+
+    <update id="updateStandard">
+        update health_index_standard
+        <set>
+            <if test="heartRateGoodHigh!=null">
+                heart_rate_good_high=#{heartRateGoodHigh},
+            </if>
+            <if test="heartRateGoodLow!=null">
+                heart_rate_good_low=#{heartRateGoodLow},
+            </if>
+            <if test="heartRateMidHigh!=null">
+                heart_rate_mid_high=#{heartRateMidHigh},
+            </if>
+            <if test="heartRateMidLow!=null">
+                heart_rate_mid_low=#{heartRateMidLow},
+            </if>
+            <if test="heartRateBadHigh!=null">
+                heart_rate_bad_high=#{heartRateBadHigh},
+            </if>
+            <if test="heartRateBadLow!=null">
+                heart_rate_bad_low=#{heartRateBadLow},
+            </if>
+            <if test="bloodOxygenGood!=null">
+                blood_oxygen_good=#{bloodOxygenGood},
+            </if>
+            <if test="bloodOxygenMid!=null">
+                blood_oxygen_mid=#{bloodOxygenMid},
+            </if>
+            <if test="bloodPressureHighGood!=null">
+                blood_pressure_high_good=#{bloodPressureHighGood},
+            </if>
+            <if test="bloodPressureMidGood!=null">
+                blood_pressure_mid_good=#{bloodPressureMidGood},
+            </if>
+            <if test="bloodPressureLowGood!=null">
+                blood_pressure_low_good=#{bloodPressureLowGood},
+            </if>
+            <if test="bloodGlucoseHigh!=null">
+                blood_glucose_high=#{bloodGlucoseHigh},
+            </if>
+            <if test="bloodGlucoseLow!=null">
+                blood_glucose_low=#{bloodGlucoseLow},
+            </if>
+            <if test="bloodFatHigh!=null">
+                blood_fat_high=#{bloodFatHigh},
+            </if>
+            <if test="bloodFatLow!=null">
+                blood_fat_low=#{bloodFatLow},
+            </if>
+        </set>
+        <where>
+            standard_id=1
+        </where>
+    </update>
+
+</mapper>

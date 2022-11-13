@@ -17,6 +17,15 @@ public class outarchive {
     private Integer buildingid;
     private String state;
     private Date outtime;
+    private String dstate;
+
+    public String getDstate() {
+        return dstate;
+    }
+
+    public void setDstate(String dstate) {
+        this.dstate = dstate;
+    }
 
     public outarchive() {
     }

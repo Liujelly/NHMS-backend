@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.dao.UserDAO;
 import xh.nursinghome.system.entity.UserDO;
 import xh.nursinghome.system.service.LoginService;
@@ -22,6 +23,7 @@ public class LoginController {
     @Autowired
     private UserDAO userDAO;
 
+    @OperationLogAnnotation(operModul = "登录模块",operType = "登录",operDesc = "登录系统")
     @GetMapping("/loginJudge")
     public Object loginJudge(@RequestParam("userName") String userName, @RequestParam("password") String password){
 
@@ -30,10 +32,15 @@ public class LoginController {
             UserDO userDO=loginService.findUser(userName);
             if(userDO!=null){
                 if(password.equals(userDO.getPassword())){
-                    String token=new JwtTokenUtil().generateToken(userDO);
-                    res.put("code",100);
-                    res.put("msg","登录成功");
-                    res.put("token",token);
+                    if(userDO.getEnabled()){
+                        String token=new JwtTokenUtil().generateToken(userDO);
+                        res.put("code",100);
+                        res.put("msg","登录成功");
+                        res.put("token",token);
+                    }else{
+                        res.put("code",400);
+                        res.put("msg","用户已禁用");
+                    }
                 }else{
                     res.put("code",101);
                     res.put("msg","密码错误");

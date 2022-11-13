@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.entity.BuildingDO;
 import xh.nursinghome.system.entity.DormDO;
 import xh.nursinghome.system.entity.InfrastructureDO;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class InfrastructureController {
     @Autowired
     private InfrastructureService infrastructureService;
-
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-基础设施管理",operType = "查询",operDesc = "查询所有宿舍")
     @GetMapping("/infrastructureFindAll")
     public Map<String,Object> infrastructureFindAll(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -31,6 +32,7 @@ public class InfrastructureController {
         res.put("total",page.getTotal());
         return res;
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-基础设施管理",operType = "查询",operDesc = "查询所有宿舍")
     @PostMapping("/infrastructureAdd")
     public boolean infrastructureAdd(@RequestBody InfrastructureDO infrastructureDO){
         List<InfrastructureDO> infrastructureDOS=infrastructureService.findAll();
@@ -42,15 +44,18 @@ public class InfrastructureController {
         }
         return infrastructureService.addInfrastructure(infrastructureDO);
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-基础设施管理",operType = "查询",operDesc = "查询基础设施")
     @PostMapping("/infrastructureUpdate")
     public boolean infrastructureUpdate(@RequestBody InfrastructureDO infrastructureDO){
         return infrastructureService.updateInfrastructure(infrastructureDO);
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-基础设施管理",operType = "删除",operDesc = "删除基础设施")
     @PostMapping("/infrastructureDelete")
     public boolean infrastructureDelete(@RequestBody List<Integer> ids){
         boolean res=infrastructureService.deleteInfrastructure(ids);
         return res;
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-基础设施管理",operType = "查询",operDesc = "复合查询基础设施")
     @GetMapping("/infrastructureFindComplex")
     public Map<String,Object> infrastructureFindComplex(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam String input1,@RequestParam String input2,@RequestParam String input3){
         Map<String,Object> res=new HashMap<>();
@@ -59,6 +64,7 @@ public class InfrastructureController {
         res.put("total",page.getTotal());
         return res;
     }
+
     @GetMapping("/infrastructureExport")
     public void infrastructureExport(HttpServletResponse response)throws Exception{
         List<InfrastructureDO> list=infrastructureService.findAll();

@@ -17,13 +17,14 @@ public class ChaStaController {
     private ChangingStandardDAO changingStandardDAO;
     @Autowired
     private ChaStaService chaStaService;
-    @OperationLogAnnotation(operModul = "收费标准设置",operType = "查询",operDesc = "查询收费标准")
+    @OperationLogAnnotation(operModul = "资料管理-收费标准设置",operType = "查询",operDesc = "查询收费标准")
     @GetMapping("/ChaStaFind")
     public Map<String,Object> ChaStaFind(){
         Map<String,Object> res=new HashMap<>();
         res.put("data",chaStaService.findAll());
         return res;
     }
+    @OperationLogAnnotation(operModul = "资料管理-收费标准设置",operType = "更新",operDesc = "更新收费标准")
     @PostMapping("/ChaStaUpdate")
     public boolean ChaStaUpdate(@RequestBody List<ChangingStandardDO> changingStandardDOS){
         Integer count=chaStaService.update(changingStandardDOS);
