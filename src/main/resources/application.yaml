@@ -1,5 +1,8 @@
-mybatis:
+mybatis-plus:
+  mapper-locations: classpath:xh.nursinghome.system.dao/*.xml
+  type-aliases-package: xh.nursinghome.system.entity
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
