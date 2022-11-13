@@ -6,6 +6,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.entity.BuildingDO;
 import xh.nursinghome.system.entity.DishDO;
 import xh.nursinghome.system.entity.RecipeDetailDO;
@@ -26,7 +27,8 @@ public class BuildingController {
     private BuildingService buildingService;
     @Autowired
     private RoomService roomService;
-    
+
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理",operType = "查询",operDesc = "查询所有楼宇信息")
     @GetMapping("/buildingFindAll")
     public Map<String,Object> buildingFindAll(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -35,6 +37,7 @@ public class BuildingController {
         res.put("total",page.getTotal());
         return res;
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理",operType = "添加",operDesc = "添加楼宇信息")
     @PostMapping("/buildingAdd")
     public boolean buildingAdd(@RequestBody BuildingDO buildingDO){
         List<BuildingDO> buildingDOS=buildingService.findAll();
@@ -46,11 +49,12 @@ public class BuildingController {
         }
         return buildingService.addBuilding(buildingDO);
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理",operType = "更新",operDesc = "更新楼宇信息")
     @PostMapping("/buildingUpdate")
     public boolean buildingUpdate(@RequestBody BuildingDO buildingDO){
         return buildingService.updateBuilding(buildingDO);
     }
-
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理",operType = "查询",operDesc = "复合查询楼宇信息")
     @GetMapping("/buildingFindComplex")
     public Map<String,Object> buildingFindComplex(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam String input1,@RequestParam String input2,@RequestParam String input3){
         Map<String,Object> res=new HashMap<>();
@@ -88,6 +92,7 @@ public class BuildingController {
     }
 
     //以下是房间管理
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理-房间管理",operType = "查询",operDesc = "查询房间信息")
     @GetMapping("/roomFindAll")
     public Map<String,Object> roomFindAll(@RequestParam Integer pageNum,@RequestParam Integer pageSize){
         Map<String,Object> res=new HashMap<>();
@@ -96,6 +101,7 @@ public class BuildingController {
         res.put("total",page.getTotal());
         return res;
     }
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理-房间管理",operType = "添加",operDesc = "添加房间信息")
     @PostMapping("/roomAdd")
     public boolean roomAdd(@RequestBody RoomDO roomDO){
         List<RoomDO> roomDOS=roomService.findAll();
@@ -107,11 +113,14 @@ public class BuildingController {
         }
         return roomService.addRoom(roomDO);
     }
+
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理-房间管理",operType = "更新",operDesc = "更新房间信息")
     @PostMapping("/roomUpdate")
     public boolean roomUpdate(@RequestBody RoomDO roomDO){
         return roomService.updateRoom(roomDO);
     }
 
+    @OperationLogAnnotation(operModul = "资料管理-设施管理-楼房管理-房间管理",operType = "查询",operDesc = "复合查询房间信息")
     @GetMapping("/roomFindComplex")
     public Map<String,Object> roomFindComplex(@RequestParam Integer pageNum,@RequestParam Integer pageSize,@RequestParam String input1,@RequestParam String input2,@RequestParam String input3){
         Map<String,Object> res=new HashMap<>();

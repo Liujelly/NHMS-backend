@@ -5,6 +5,7 @@ import cn.hutool.poi.excel.ExcelWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import xh.nursinghome.system.aop.OperationLogAnnotation;
 import xh.nursinghome.system.entity.elderly;
 import xh.nursinghome.system.service.impl.ElderlyService;
 
@@ -19,19 +20,23 @@ public class ElderlyController {
     @Autowired
     ElderlyService elderlyService;
     @GetMapping("/page2")
+    @OperationLogAnnotation(operModul = "老人管理-档案管理-老人档案",operType = "查询",operDesc = "查询老人信息")
     public Map<String,Object> SelectCheckInController(@RequestParam Integer pageNum, @RequestParam Integer pageSize,@RequestParam String name,@RequestParam String sex){
         return elderlyService.SelectElderlyService(pageNum,pageSize,name,sex);
     }
     @PostMapping("/elderly")
+    @OperationLogAnnotation(operModul = "老人管理-档案管理-老人档案",operType = "更新",operDesc = "更新老人信息")
     public Integer UpIn(@RequestBody elderly elderly){
         return elderlyService.UpIn(elderly);
     }
     @DeleteMapping("/elderly/{id}")
+    @OperationLogAnnotation(operModul = "老人管理-档案管理-老人档案",operType = "删除",operDesc = "删除老人信息")
     public Integer delete(@PathVariable("id")Integer id)
     {
         return elderlyService.delete(id);
     }
     @GetMapping("/exportelderly")
+    @OperationLogAnnotation(operModul = "老人管理-档案管理-老人档案",operType ="导出",operDesc = "导出老人信息")
     public void export(HttpServletResponse response) throws Exception {
 
         // 从数据库查询出所有的数据

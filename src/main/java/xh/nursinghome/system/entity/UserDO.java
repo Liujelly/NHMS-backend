@@ -3,12 +3,13 @@ package xh.nursinghome.system.entity;
 public class UserDO {
     private int id;
     private String userName;
+    private String relName;
     private String password;
     private String createdBy;
     private String createdTime;
     private Boolean enabled;
     private int roleId;
-    private String isDimission;
+    private String roleName;
 
     public int getId() {
         return id;
@@ -66,11 +67,19 @@ public class UserDO {
         this.roleId = roleId;
     }
 
-    public String getIsDimission() {
-        return isDimission;
+    public String getRelName() {
+        return relName;
     }
 
-    public void setIsDimission(String isDimission) {
-        this.isDimission = isDimission;
+    public void setRelName(String relName) {
+        this.relName = relName;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

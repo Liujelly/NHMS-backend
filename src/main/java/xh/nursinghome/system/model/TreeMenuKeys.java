@@ -4,7 +4,7 @@ import java.util.List;
 
 public class TreeMenuKeys {
     private int roleId;
-    private List<Integer> menuIds;
+    private List<Integer> selectedMenuIds;
 
     public int getRoleId() {
         return roleId;
@@ -14,11 +14,11 @@ public class TreeMenuKeys {
         this.roleId = roleId;
     }
 
-    public List<Integer> getMenuIds() {
-        return menuIds;
+    public List<Integer> getSelectedMenuIds() {
+        return selectedMenuIds;
     }
 
-    public void setMenuIds(List<Integer> menuIds) {
-        this.menuIds = menuIds;
+    public void setSelectedMenuIds(List<Integer> selectedMenuIds) {
+        this.selectedMenuIds = selectedMenuIds;
     }
 }

@@ -37,7 +37,7 @@ public class PermissionsController {
 
     @PostMapping("/updateRoleMenu")
     public Boolean updateRoleMenu(@RequestBody TreeMenuKeys treeMenuKeys){
-        return permissionsService.updateRoleMenu(treeMenuKeys.getRoleId(),treeMenuKeys.getMenuIds());
+        return permissionsService.updateRoleMenu(treeMenuKeys.getRoleId(),treeMenuKeys.getSelectedMenuIds());
     }
     @PostMapping("/deleteRole")
     public Boolean deleteRole(@RequestBody RoleDO roleDO){
@@ -46,6 +46,9 @@ public class PermissionsController {
     }
     @PostMapping("/addRole")
     public Boolean addRole(@RequestBody RoleDO roleDO){
+        if(roleDO.getName()==""||roleDO.getNameZh()==""){
+            return false;
+        }
         return permissionsService.addRole(roleDO);
     }
 

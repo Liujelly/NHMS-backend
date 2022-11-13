@@ -13,4 +13,5 @@ public interface RoleDAO {
     List<RoleDO> findAll();
     Integer insertRole(RoleDO roleDO);
     Integer deleteById(@Param("id") int id);
+    RoleDO findRole(@Param("id") int id);
 }

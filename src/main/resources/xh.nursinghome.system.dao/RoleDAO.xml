@@ -10,6 +10,9 @@
     <select id="findAll" resultMap="roleResultMap">
         select * from role
     </select>
+    <select id="findRole" resultMap="roleResultMap">
+        select * from role where id=#{id}
+    </select>
     <insert id="insertRole" parameterType="xh.nursinghome.system.entity.RoleDO">
         insert into role (name,name_zh) VALUES (#{name},#{nameZh})
     </insert>

@@ -3,11 +3,14 @@ package xh.nursinghome.system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import xh.nursinghome.system.dao.UserDAO;
 import xh.nursinghome.system.entity.UserDO;
 import xh.nursinghome.system.service.LoginService;
 import xh.nursinghome.system.utils.JwtTokenUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +19,8 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     private LoginService loginService;
+    @Autowired
+    private UserDAO userDAO;
 
     @GetMapping("/loginJudge")
     public Object loginJudge(@RequestParam("userName") String userName, @RequestParam("password") String password){
@@ -42,6 +47,16 @@ public class LoginController {
             res.put("msg","用户或密码不能为空");
         }
 
+        return res;
+    }
+    @GetMapping("/getUserName")
+    public Map<String,Object> getUserName(HttpServletRequest request){
+        Map<String,Object> res=new HashMap<>();
+        String token = request.getHeader("token");
+        JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        UserDO user=userDAO.findUser(username);
+        res.put("relName",user.getRelName());
         return res;
     }
 }

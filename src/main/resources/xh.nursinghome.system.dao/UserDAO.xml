@@ -10,12 +10,33 @@
         <result column="created_time" property="createdTime"/>
         <result column="enabled" property="enabled"/>
         <result column="role_id" property="roleId"/>
-        <result column="is_dimission" property="isDimission"/>
-
+        <result column="rel_name" property="relName"/>
+        <result column="role_name" property="roleName"/>
     </resultMap>
     <select id="findUser" resultMap="userResultMap">
         select * from user where user_name=#{userName}
     </select>
+    <select id="findAll" resultMap="userResultMap">
+        select * from user
+    </select>
+    <select id="findComplex" resultMap="userResultMap">
+        select * from user
+        <where>
+            <if test="userName != null and userName !='' and userName !='0'.toString()" >
+                user_name=#{userName}
+            </if>
+            <if test="relName != null and relName !='' and relName !='0'.toString()">
+                and  rel_name LIKE CONCAT('%',#{relName},'%')
+            </if>
+        </where>
+    </select>
+    <update id="updateEnabledAndRole" parameterType="xh.nursinghome.system.entity.UserDO">
+        update user set enabled=#{enabled},role_id=#{roleId},role_name=#{roleName} where id=#{id}
+    </update>
 
+    <insert id="addUser" parameterType="xh.nursinghome.system.entity.UserDO">
+        insert into user (user_name,password,created_by,created_time,enabled,role_id,rel_name,role_name)
+        VALUES (#{userName},#{password},#{createdBy},#{createdTime},#{enabled},#{roleId},#{relName},#{roleName})
+    </insert>
 
 </mapper>
