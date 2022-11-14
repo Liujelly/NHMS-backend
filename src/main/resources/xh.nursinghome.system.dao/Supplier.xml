@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.SupplierMapper">
+
+    <!--    void updateUser();-->
+    <update id="supplierUpdate">
+        update supplier
+        <set>
+
+            <if test="supplierName !=null" >
+                supplier_name=#{supplierName},
+            </if>
+            <if test="supplierAddress !=null" >
+                supplier_address=#{supplierAddress},
+            </if>
+            <if test="businessScope !=null" >
+                business_scope=#{businessScope},
+            </if>
+            <if test="supplierPerson !=null" >
+                supplier_person=#{supplierPerson},
+            </if>
+            <if test="supplierPhone !=null" >
+            supplier_phone=#{supplierPhone},
+            </if>
+        </set>
+        <where>
+            supplier_num=#{supplierNum}
+        </where>
+    </update>
+
+    <!--    public void deleteByIds(@Param("ids") List<Integer> ids);-->
+    <select id="supplierDeleteByIds" parameterType="xh.nursinghome.system.entity.MaterialDetail">
+        delete from supplier where supplier_num in
+        <foreach collection="supplierNums" open="(" close=")" separator="," item="supplierNum">
+            #{supplierNum}
+        </foreach>
+    </select>
+
+
+</mapper>

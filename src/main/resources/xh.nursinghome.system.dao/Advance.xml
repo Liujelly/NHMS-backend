@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.AdvanceMapper">
+
+    <select id="SelectAdvance" resultType="advance">
+        select * from advance where name like concat('%', #{name}, '%')   limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from advance where name like concat('%', #{name}, '%')
+    </select>
+    <insert id="InsertAdvance">
+        insert into advance (id,name,jname,price,tel,date) values (null,#{name},#{jname},#{price},#{tel},#{date})
+    </insert>
+    <update id="UpdateAdvance">
+        update advance set name=#{name},jname=#{jname},price=#{price},tel=#{tel},date=#{date} where id=#{id}
+    </update>
+    <delete id="DeleteAdvance">
+        delete from advance where id=#{id}
+    </delete>
+</mapper>

@@ -21,7 +21,7 @@
         delete from elderly where id=#{id}
     </delete>
 
-    <update id="UpdateElderlyDstate">
-        update elderly set dstate=#{dstate},buildingid=0,dormitoryid=null where dormitoryid=#{dormitoryid}
+    <update id="UpdateElderlyDstate" parameterType="xh.nursinghome.system.entity.elderly">
+        update elderly set buildingid=0,dormitoryid=null ,dstate="未分配" where id=#{id}
     </update>
 </mapper>

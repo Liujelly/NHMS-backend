@@ -16,7 +16,7 @@
     </select>
 
     <select id="findNameById" resultMap="dormResultMap">
-        select dorm_name from dorm where id=#{id}
+        select * from dorm where id=#{id}
     </select>
 
     <update id="updateDorm" parameterType="xh.nursinghome.system.entity.DormDO">

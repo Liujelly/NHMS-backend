@@ -16,5 +16,5 @@ public interface DormDAO {
     Integer updateDorm(DormDO dormDO);
     List<DormDO> findComplex(@Param("buildingId") String buildingId,@Param("dormType") String dormType);
     Integer delete(@Param("id") int id);
-    String findNameById(@Param("id") int id);
+    DormDO findNameById(@Param("id") int id);
 }

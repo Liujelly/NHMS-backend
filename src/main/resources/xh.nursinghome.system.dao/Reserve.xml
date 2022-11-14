@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.ReserveMapper">
+
+    <select id="SelectReserve" resultType="reserve">
+        select * from reserve where name like concat('%', #{name}, '%')   limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from reserve where name like concat('%', #{name}, '%')
+    </select>
+    <insert id="InsertReserve">
+        insert into reserve (id,name,jname,reserveprice,tel,date) values (null,#{name},#{jname},#{reserveprice},#{tel},#{date})
+    </insert>
+    <update id="UpdateReserve">
+        update reserve set name=#{name},jname=#{jname},reserveprice=#{reserveprice},tel=#{tel},date=#{date} where id=#{id}
+    </update>
+    <delete id="DeleteReserve">
+        delete from reserve where id=#{id}
+    </delete>
+</mapper>

@@ -26,6 +26,6 @@
         update dorm set bed_available=#{bedAvailable},elderly_ids=CONCAT(elderly_ids,"、",#{elderlyIds}),bed_status="已满员" where building_id=#{buildingId} and dorm_name=#{dormName}
     </update>
     <update id="UpdateElderly">
-        update elderly set buildingid=#{buildingId},dormitoryid=#{dormName} ,dstate="已分配" where id=#{id}
+        update elderly set buildingid=null,dormitoryid=null,dstate="已分配" where id=#{id}
     </update>
 </mapper>

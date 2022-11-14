@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.ReturnMapper">
+
+    <!--    void updateUser();-->
+    <update id="update">
+        update return1
+        <set>
+            <if test="inboundNumber !=null" >
+                inbound_number=#{inboundNumber},
+            </if>
+            <if test="materialNumber !=null" >
+                material_number=#{materialNumber},
+            </if>
+            <if test="materialName !=null" >
+                material_name=#{materialName},
+            </if>
+            <if test="warehousingQuantity !=null" >
+                warehousing_quantity=#{warehousingQuantity},
+            </if>
+            <if test="warehousingTime !=null" >
+                warehousing_time=#{warehousingTime},
+            </if>
+            <if test="productionDate !=null" >
+                production_date=#{productionDate},
+            </if>
+            <if test="mSupplier !=null" >
+                m_supplier=#{mSupplier},
+            </if>
+            <if test="shelfLife !=null" >
+                shelf_life=#{shelfLife},
+            </if>
+            <if test="inOperator !=null" >
+                in_operator=#{inOperator},
+            </if>
+
+
+        </set>
+        <where>
+            outbound_number=#{outboundNumber}
+        </where>
+    </update>
+
+
+
+
+</mapper>

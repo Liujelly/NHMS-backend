@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.MaterialDetailMapper">
+
+    <!--    void updateUser();-->
+    <update id="update">
+        update material_detail
+        <set>
+            <if test="materialNumber !=null" >
+                material_number=#{materialNumber},
+            </if>
+            <if test="materialName !=null" >
+                material_name=#{materialName},
+            </if>
+            <if test="warehousingQuantity !=null" >
+                warehousing_quantity=#{warehousingQuantity},
+            </if>
+            <if test="warehousingTime !=null" >
+                warehousing_time=#{warehousingTime},
+            </if>
+            <if test="productionDate !=null" >
+                production_date=#{productionDate},
+            </if>
+            <if test="mSupplier !=null" >
+                m_supplier=#{mSupplier},
+            </if>
+            <if test="shelfLife !=null" >
+                shelf_life=#{shelfLife},
+            </if>
+            <if test="inOperator !=null" >
+                in_operator=#{inOperator},
+            </if>
+
+
+        </set>
+        <where>
+            inbound_number=#{inboundNumber}
+        </where>
+    </update>
+
+    <!--    public void deleteByIds(@Param("ids") List<Integer> ids);-->
+    <select id="deleteByIds" parameterType="xh.nursinghome.system.entity.MaterialDetail">
+        delete from material_detail where inbound_number in
+        <foreach collection="mIds" open="(" close=")" separator="," item="inboundNumber">
+            #{inboundNumber}
+        </foreach>
+    </select>
+
+
+</mapper>

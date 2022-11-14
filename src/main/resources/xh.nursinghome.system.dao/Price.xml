@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.PriceMapper">
+
+    <select id="SelectPrice" resultType="price">
+        select * from price where name like concat('%', #{name}, '%')   limit #{pageNum},#{pageSize}
+    </select>
+    <select id="total" resultType="Integer">
+        select count(*) from price where name like concat('%', #{name}, '%')
+    </select>
+    <insert id="InsertPrice">
+        insert into price (id,name,allprice,accumulated,leaveprice) values (null,#{name},#{allprice},#{accumulated},#{leaveprice})
+    </insert>
+    <update id="UpdatePrice">
+        update price set name=#{name},allprice=#{allprice},accumulated=#{accumulated},leaveprice=#{leaveprice} where id=#{id}
+    </update>
+    <delete id="DeletePrice">
+        delete from price where id=#{id}
+    </delete>
+</mapper>
