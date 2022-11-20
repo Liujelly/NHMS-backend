@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xh.nursinghome.system.dao.MaterialMapper">
 
+
+    <resultMap id="MaterialResultMap" type="xh.nursinghome.system.entity.Material">
+        <id column="m_id" property="mId"/>
+        <result column="m_name" property="mName"/>
+        <result column="m_specification" property="mSpecification"/>
+        <result column="m_unit" property="mUnit"/>
+        <result column="m_Location" property="mLocation"/>
+        <result column="m_quantity" property="mQuantity"/>
+        <result column="production_date" property="mSuppliers"/>
+        <result column="m_highest" property="mHighest"/>
+        <result column="m_lowest" property="mLowest"/>
+
+
+    </resultMap>
+
     <!--    void updateUser();-->
     <update id="update">
        update material

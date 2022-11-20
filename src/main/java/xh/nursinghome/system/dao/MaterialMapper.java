@@ -33,10 +33,10 @@ public interface MaterialMapper {
     List<Material> selectbyIdPage(@Param("pageNum") Integer pageNum,@Param("pageSize") Integer pageSize,@Param("mId") String mId);
 
     @Select("select count(*) from material where m_id=#{mId} ")
-    Integer SelectById(@Param("Id") String Id);
+    Integer SelectById(@Param("mId") String mId);
 
     @Select("select * from material where m_id=#{mId} ")
-    Material findById(@Param("Id") String Id);
+    Material findById(@Param("mId") String mId);
     /*** 批量删除 * @param ids
      * @return
      * */

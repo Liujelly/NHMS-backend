@@ -23,5 +23,7 @@ public interface DonateMapper {
     int update(donate donate);
     @Delete("delete from donate where d_id=#{dId}")
     Integer deleteById(@Param("dId") Integer dId);
+    Integer updatematerial(@Param("number") Integer number,@Param("mName") String mName);
+
 
 }

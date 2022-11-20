@@ -20,7 +20,7 @@ public interface DormitoryMapper
     DormDO SelectDormitory1(@Param("buildingId") Integer buildingId,@Param("dormName") String dormName);
 
     Integer UpdateDormitory(DormDO dormDO);
-    Integer UpdateElderly(@Param("id") Integer id,@Param("buildingId") Integer buildingId,@Param("dormName") String dormName);
+    Integer UpdateElderly(@Param("id") Integer id,@Param("buildingId") Integer buildingid,@Param("dormName") String dormName);
     Integer UpdateDormitory1(DormDO dormDO);
     Integer UpdateDormitory2(DormDO dormDO);
 

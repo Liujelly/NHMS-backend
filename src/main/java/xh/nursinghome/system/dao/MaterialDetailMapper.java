@@ -2,6 +2,7 @@ package xh.nursinghome.system.dao;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+import xh.nursinghome.system.entity.Employeetest;
 import xh.nursinghome.system.entity.MaterialDetail;
 
 import java.util.List;
@@ -51,11 +52,14 @@ public interface MaterialDetailMapper {
      * @return
      * */
     @Select("select * from material_detail where inbound_number=#{inboundNumber} ")
-    MaterialDetail findById(@Param("inbound_number") Integer inbound_number);
+    MaterialDetail findById(@Param("inboundNumber") Integer inboundNumber);
 
     //    通过list集合实现批量删除
     Integer deleteByIds(@Param("mIds") List<Integer> mIds);
 
+
+    @Select("SELECT * FROM sys_employee")
+    List<Employeetest> findAllEmployee();
 
     @Select("select id from sys_employee")
     List<Integer> findEmployeeId();

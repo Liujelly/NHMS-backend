@@ -3,6 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xh.nursinghome.system.dao.MaterialDetailMapper">
+    <resultMap id="MaterialDetailResultMap" type="xh.nursinghome.system.entity.MaterialDetail">
+        <id column="inbound_number" property="inboundNumber"/>
+        <result column="material_number" property="materialNumber"/>
+        <result column="material_name" property="materialName"/>
+        <result column="warehousing_quantity" property="warehousingQuantity"/>
+        <result column="warehousing_time" property="warehousingTime"/>
+        <result column="production_date" property="productionDate"/>
+        <result column="m_supplier" property="mSupplier"/>
+        <result column="shelf_life" property="shelfLife"/>
+        <result column="shelf_life" property="inOperator"/>
+
+    </resultMap>
 
     <!--    void updateUser();-->
     <update id="update">

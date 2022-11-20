@@ -39,4 +39,6 @@
         VALUES (#{userName},#{password},#{createdBy},#{createdTime},#{enabled},#{roleId},#{relName},#{roleName})
     </insert>
 
+
+
 </mapper>

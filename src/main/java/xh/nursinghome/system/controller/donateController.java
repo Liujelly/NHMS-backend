@@ -41,6 +41,10 @@ public Integer addedit(@RequestBody donate donate)
             return donateMapper.update(donate);
         }
         else{
+
+donateMapper.updatematerial(donate.getdGoodsnumber(), donate.getdGoodsname());
+
+
             return donateMapper.insert(donate);
         }
     }

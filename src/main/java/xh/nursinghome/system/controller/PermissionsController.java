@@ -25,6 +25,7 @@ public class PermissionsController {
         List<Menu> menus=permissionsService.getMenu(userName);
         return menus;
     }
+
     @OperationLogAnnotation(operModul = "资料管理-权限管理",operType = "查询",operDesc = "查询角色")
     @GetMapping("/getRole")
     public List<RoleDO> getRole(){

@@ -45,7 +45,7 @@ public class JwtTokenUtil {
 
     //生成token失效时间
     private Date generateExpirationDate() {
-        return new Date(System.currentTimeMillis() + expiration*1000);
+        return new Date(System.currentTimeMillis() + expiration*1000*12);
     }
 
     //从token中获取用户名

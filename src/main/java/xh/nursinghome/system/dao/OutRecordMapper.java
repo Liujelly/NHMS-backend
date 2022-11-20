@@ -23,8 +23,7 @@ public interface OutRecordMapper {
 
 
     @Select("select * from outrecord where material_name like #{materialName}\n" +
-            "          and in_operator like #{inOperator}\n" +
-            "          limit #{pageNum},#{pageSize}")
+            "          and in_operator like #{inOperator} ORDER BY outbound_number DESC limit #{pageNum},#{pageSize}")
     List<OutRecord> selectPage(@Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize,@Param("materialName") String materialName,@Param("inOperator") String inOperator);
 
     @Select("select count(*) from outrecord where material_name like concat('%',#{materialName},'%') and in_operator like #{inOperator} ")

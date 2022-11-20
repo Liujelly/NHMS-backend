@@ -85,8 +85,8 @@ public class UserServiceImpl implements UserService {
         JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
         String username=jwtTokenUtil.getUsernameFromToken(token);
         userDO.setCreatedBy(username);
-        Employee employee = employeeService.getById(userDO.getUserName());
-        userDO.setRelName(employee.getEmployeeName());
+//        Employee employee = employeeService.getById(userDO.getUserName());
+//        userDO.setRelName(employee.getEmployeeName());
         Integer res=userDAO.addUser(userDO);
         if(res==1){
             return true;

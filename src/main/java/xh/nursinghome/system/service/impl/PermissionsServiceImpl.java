@@ -90,6 +90,25 @@ public class PermissionsServiceImpl implements PermissionsService {
         return data;
     }
     @Override
+    public List<MenuDO> getBottomMenu(String userName){
+        UserDO userDO=userDAO.findUser(userName);
+        int roleId=userDO.getRoleId();
+        List<MenuRole> menuRoles=menuRoleDAO.findByRoleId(roleId);
+        List<MenuDO> totalMenuDOS=menuDAO.findAll();
+        List<MenuDO> bottomMenuDOS=new ArrayList<>();
+        for(MenuRole menuRole:menuRoles) {
+            int menuId=menuRole.getMenuId();
+            for(MenuDO menuDO:totalMenuDOS){
+                if(menuDO.getId()==menuId){
+                    bottomMenuDOS.add(menuDO);
+                }
+            }
+        }
+
+        return bottomMenuDOS;
+
+    }
+    @Override
     public List<RoleDO> getRole(){
         List<RoleDO> roleDOS=roleDAO.findAll();
         return roleDOS;

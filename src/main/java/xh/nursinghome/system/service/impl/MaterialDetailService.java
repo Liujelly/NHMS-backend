@@ -3,14 +3,15 @@ package xh.nursinghome.system.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import xh.nursinghome.system.dao.InRecordMapper;
-import xh.nursinghome.system.dao.MaterialDetailMapper;
-import xh.nursinghome.system.dao.MaterialMapper;
-import xh.nursinghome.system.dao.ReturnMapper;
-import xh.nursinghome.system.entity.InRecord;
-import xh.nursinghome.system.entity.Material;
-import xh.nursinghome.system.entity.MaterialDetail;
-import xh.nursinghome.system.entity.Return;
+import xh.nursinghome.system.dao.*;
+import xh.nursinghome.system.entity.*;
+import xh.nursinghome.system.model.Option;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MaterialDetailService {
@@ -22,7 +23,25 @@ public class MaterialDetailService {
     private InRecordMapper inRecordMapper;
     @Autowired
     MaterialDetailMapper materialDetailMapper;
+    @Resource
+    private EmployeeMapper employeeMapper;
 
+
+
+    public Map<String, Object> findAll() {
+        Map<String,Object> res=new HashMap<>();
+        List<Employeetest> recipeDOS=materialDetailMapper.findAllEmployee();
+        List<Option> options=new ArrayList<>();
+        for(int i=0;i< recipeDOS.size();i++){
+            Option option=new Option();
+            option.setValue(i);
+            option.setLabel(recipeDOS.get(i).getEmployeeName());
+            options.add(option);
+        }
+        res.put("options",options);
+
+        return res;
+    }
 
 //    public Map<String,Object> SelectRetreatidService()
 //    {

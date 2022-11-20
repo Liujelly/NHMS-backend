@@ -43,7 +43,12 @@ public class ReturnConrtoller {
 
     }
 
+//删除
 
+@DeleteMapping("/Return/{outboundNumber}")
+public Integer delete(@PathVariable Integer outboundNumber){
+    return returnMapper.deleteBymId(outboundNumber);
+}
 
 
 //

@@ -18,6 +18,11 @@
     select * from donate
     </select>
 
+    <update id="updatematerial">
+        update material set m_quantity=m_quantity+#{number} where m_name=#{mName};
+    </update>
+
+
 
 
 </mapper>

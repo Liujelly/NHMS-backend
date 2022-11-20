@@ -24,7 +24,7 @@ public interface InRecordMapper {
 
     @Select("select * from inrecord where material_name like #{materialName}\n" +
             "          and in_operator like #{inOperator}\n" +
-            "          limit #{pageNum},#{pageSize}")
+            "           ORDER BY inbound_number DESC limit #{pageNum},#{pageSize}")
     List<InRecord> selectPage(@Param("pageNum") Integer pageNum,@Param("pageSize") Integer pageSize,@Param("materialName") String materialName,@Param("inOperator") String inOperator);
 
     @Select("select count(*) from inrecord where material_name like concat('%',#{materialName},'%') and in_operator like #{inOperator} ")

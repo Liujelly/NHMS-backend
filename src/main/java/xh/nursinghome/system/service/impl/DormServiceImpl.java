@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import xh.nursinghome.system.dao.DormDAO;
 import xh.nursinghome.system.entity.DormDO;
 import xh.nursinghome.system.entity.RoomDO;
+import xh.nursinghome.system.entity.elderly;
 import xh.nursinghome.system.service.DormService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,6 +47,7 @@ public class DormServiceImpl implements DormService {
 
     @Override
     public boolean delete(List<Integer> ids) {
+
         Integer res=0;
         for(int id:ids){
             res+=dormDAO.delete(id);

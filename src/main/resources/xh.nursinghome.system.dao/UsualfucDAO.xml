@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.UsualfucDAO">
+    <resultMap id="UsualfucResultMap" type="xh.nursinghome.system.entity.UsualfucDO">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="menu_zh" property="menuZh"/>
+        <result column="path" property="path"/>
+    </resultMap>
+
+    <select id="findByUserName" resultMap="UsualfucResultMap">
+        select * from usual_fuc where user_name=#{userName}
+    </select>
+    
+    <insert id="insert" parameterType="xh.nursinghome.system.entity.UsualfucDO">
+        insert into usual_fuc (user_name,menu_zh,path) VALUES (#{userName},#{menuZh},#{path})
+    </insert>
+
+    <delete id="deleteByUserName" parameterType="xh.nursinghome.system.entity.UsualfucDO">
+        delete from usual_fuc where user_name=#{userName}
+    </delete>
+
+    <delete id="deleteById" parameterType="xh.nursinghome.system.entity.UsualfucDO">
+        delete from usual_fuc where id=#{id}
+    </delete>
+
+</mapper>

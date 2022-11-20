@@ -1,10 +1,7 @@
 package xh.nursinghome.system.dao;
 
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import xh.nursinghome.system.entity.Return;
 
@@ -42,4 +39,9 @@ public interface ReturnMapper {
     Integer SelectByTime(@Param("time") String time);
     @Select("select * from return1 where outbound_number=#{outboundNumber} ")
     Return findById(@Param("outboundNumber") Integer outboundNumber);
+
+//删除
+    @Delete("delete from return1 where outbound_number=#{outboundNumber}")
+    Integer deleteBymId(@Param("outboundNumber") Integer outboundNumber);
+
 }

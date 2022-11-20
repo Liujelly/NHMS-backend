@@ -7,7 +7,9 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import xh.nursinghome.system.constant.Constant;
+import xh.nursinghome.system.dao.UserDAO;
 import xh.nursinghome.system.entity.Employee;
+import xh.nursinghome.system.entity.UserDO;
 import xh.nursinghome.system.service.EmployeeService;
 import xh.nursinghome.system.utils.ResponseDateUtil;
 import xh.nursinghome.system.utils.ResultBuilder;
@@ -20,6 +22,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private UserDAO userDAO;
 
 
     //@OperationLogAnnotation(operModul = "人事管理-员工信息管理",operType = "",operDesc = "获取员工列表")

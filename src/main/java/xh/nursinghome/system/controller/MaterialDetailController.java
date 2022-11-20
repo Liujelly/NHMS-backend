@@ -11,6 +11,7 @@ import xh.nursinghome.system.dao.OutRecordMapper;
 import xh.nursinghome.system.entity.MaterialDetail;
 import xh.nursinghome.system.entity.OutRecord;
 import xh.nursinghome.system.service.impl.MaterialDetailService;
+import xh.nursinghome.system.utils.DateTimeUtil;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,12 @@ private OutRecordMapper outRecordMapper;
     private MaterialDetailService materialDetailService;
 
 
+    //员工
+    @GetMapping("/findEmployee")
+    public Map<String,Object> findRecipe(){
+        Map<String,Object> res=materialDetailService.findAll();
+        return res;
+    }
 
     //增加
 //    @PostMapping("/warehouse")
@@ -46,12 +53,13 @@ private OutRecordMapper outRecordMapper;
 
         //出库记录
         OutRecord outRecord=new OutRecord();
-
+        DateTimeUtil dateTimeUtil=new DateTimeUtil();
+        String time1=dateTimeUtil.getCurrentDateTimes();
         outRecord.setInboundNumber(materialDetail.getInboundNumber());
         outRecord.setMaterialName(materialDetail.getMaterialName());
         outRecord.setMaterialNumber(materialDetail.getMaterialNumber());
 
-        outRecord.setWarehousingTime(materialDetail.getWarehousingTime());
+        outRecord.setWarehousingTime(time1);
         outRecord.setWarehousingQuantity(materialDetail.getWarehousingQuantity());
         outRecord.setProductionDate(materialDetail.getProductionDate());
         outRecord.setShelfLife(materialDetail.getShelfLife());

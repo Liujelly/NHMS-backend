@@ -85,25 +85,11 @@ public class Employee extends PageBase implements Serializable {
     @ApiModelProperty(value = "在职状态")
     private String status;
 
-    @ApiModelProperty(value = "合同期")
-    private String contractTerm;
 
-    @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
-
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    @ApiModelProperty(value = "更新时间")
-    private Date updateTime;
 
     @ApiModelProperty(value = "删除标识")
     private String deleted;
 
-    @ApiModelProperty(value = "创建者")
-    private Integer createBy;
-
-    @ApiModelProperty(value = "更新者")
-    private Integer updateBy;
 
     @ApiModelProperty(value = "图片地址")
     private String photoUrl;
