@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xh.nursinghome.system.dao.loginLogDAO">
+    <resultMap id="loginLogResultMap" type="xh.nursinghome.system.entity.loginLog">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="time" property="time"/>
+        <result column="ip" property="ip"/>
+        <result column="mac" property="mac"/>
+        <result column="error" property="error"/>
+        <result column="num" property="num"/>
+    </resultMap>
+    <select id="findByAdmin" resultMap="loginLogResultMap">
+        select * from login_vestige where user_name=#{userName}
+    </select>
+    <select id="findAll" resultMap="loginLogResultMap">
+        select * from login_vestige
+    </select>
+
+
+    <insert id="insertLoginLog" parameterType="xh.nursinghome.system.entity.InfrastructureDO">
+        insert into login_vestige (user_name,time,ip,mac,error,num)
+        VALUES (#{userName},#{time},#{ip},#{mac},#{error},#{num})
+    </insert>
+
+
+
+
+</mapper>

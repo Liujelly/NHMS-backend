@@ -68,7 +68,6 @@ public class OperationLogAspect {
             systemLog.setType(logAnnotation.operType());
             systemLog.setDescription(logAnnotation.operDesc());
 
-
         }
 
         // 获取request
